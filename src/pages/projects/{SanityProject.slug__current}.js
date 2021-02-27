@@ -6,16 +6,15 @@ import { Layout, SEO, Section, Article } from '../../components'
 export default function ProjectPage({ data: { project, siteSettings, allProjects }, location }) {
 
   let siteUrl = '#'
-  if (location.hostname === 'localhost' || location.hostname?.startsWith('192.')) {
-    if (siteSettings.canonical) {
+  if (project.url) {
+    siteUrl = project.url
+  } else {
+    const projectDomain = siteSettings.domainNames.find(domain => location.hostname?.endsWith(domain))
+    if (projectDomain) {
+      siteUrl = `https://${project.subdomain}.${projectDomain}`
+    } else if (project.subdomain) {
       const { protocol, hostname } = new URL(siteSettings.canonical)
       siteUrl = `${protocol}//${project.subdomain}.${hostname}`
-    }
-  } else {
-    if (project.url) {
-      siteUrl = project.url
-    } else if (project.subdomain) {
-      siteUrl = `${location.protocol}//${project.subdomain}.${location.hostname}`
     }
   }
 
@@ -69,6 +68,7 @@ export const query = graphql`
   query projectQuery($id: String!) {
     siteSettings: sanitySiteSettings {
       canonical
+      domainNames
     }
     allProjects: allSanityProject {
       nodes {
