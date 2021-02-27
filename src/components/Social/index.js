@@ -9,17 +9,10 @@ Social.Item = function SocialItem({ children, ...restProps }) {
   return <Item {...restProps}>{children}</Item>
 }
 
-Social.Icon = function SocialIcon({ url, children, ...restProps }) {
+Social.Icon = function SocialIcon({ url, socialNetwork = 'link', children, ...restProps }) {
   const handleClick = event => {
     event.currentTarget.blur()
   }
-
-  const parser = typeof window !== 'undefined'  ? document.createElement('a') : {}
-  parser.href = url
-  const hostname = parser?.hostname
-  const network = hostname?.split('.').reverse()[1]
-
-  const faClassName = hostname === (typeof window !== 'undefined' && window.location.hostname) ? 'fas fa-link fa-fw' : `fab fa-${network} fa-fw`
 
   return (
     <Anchor
@@ -29,7 +22,7 @@ Social.Icon = function SocialIcon({ url, children, ...restProps }) {
       onClick={handleClick}
       {...restProps}
     >
-      <Icon className={faClassName}>{children}</Icon>
+      <Icon className={`fab fa-${socialNetwork.toLowerCase()} fa-fw`}>{children}</Icon>
     </Anchor>
   )
 }
