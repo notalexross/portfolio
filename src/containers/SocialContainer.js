@@ -21,7 +21,7 @@ export default function SocialContainer() {
   return (
     <Social>
       {social.map(socialItem => (
-        <Social.Item key={socialItem._key} href={socialItem.url}>
+        <Social.Item key={socialItem._key}>
           <Social.Icon url={socialItem.url} socialNetwork={socialItem.name} title={socialItem.name} />
         </Social.Item>
       ))}
