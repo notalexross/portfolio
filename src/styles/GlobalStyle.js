@@ -124,7 +124,6 @@ const GlobalStyle = createGlobalStyle`
   //////////////////////////
 
   html {
-    scroll-behavior: smooth;
     font-size: var(--fs-root);
   }
 
