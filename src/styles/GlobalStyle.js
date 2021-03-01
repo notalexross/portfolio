@@ -85,7 +85,7 @@ const GlobalStyle = createGlobalStyle`
     --bg-feature-gradient: radial-gradient(circle, #0d253f88 0%, #0d253f 100%);
     // --bg-feature-gradient: radial-gradient(circle, #378da4 0%, #050f19 100%);
     --bbm-feature: multiply; // multiply?
-    --clr-feature-title: var(clr-primary);
+    --clr-feature-title: var(--clr-primary);
     --clr-feature-subtitle: #fffa;
 
     --clr-header: var(--clr-primary); // when at top of page
