@@ -7,7 +7,8 @@ import {
   Body,
   Link,
   Images,
-  Image
+  Image,
+  ImagePlaceholder
 } from './styles'
 
 export default function Article({ children, ...restProps }) {
@@ -38,6 +39,10 @@ Article.Images = function ArticleImages({ children, ...restProps }) {
   return <Images {...restProps}>{children}</Images>
 }
 
-Article.Image = function ArticleImage({ children, ...restProps }) {
-  return <Image {...restProps}>{children}</Image>
+Article.Image = function ArticleImage({ fluid, ...restProps }) {
+  return fluid ? (
+    <Image fluid={fluid} {...restProps} />
+  ) : (
+    <ImagePlaceholder {...restProps} />
+  )
 }

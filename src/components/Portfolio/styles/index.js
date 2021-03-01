@@ -1,12 +1,10 @@
-import styled from 'styled-components'
-// import { Link } from 'react-router-dom'
+import styled, { css } from 'styled-components'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 
 export const Container = styled.div``
 
 export const Title = styled.h1`
-  grid-area: title;
   margin-bottom: 0.2em;
 
   & a {
@@ -104,20 +102,27 @@ export const Shadow = styled.div`
   }
 `
 
-export const ImageMobile = styled(Img)`
-  display: block;
-  max-width: 100%;
-
-  transform: rotateY(-90deg) translateX(var(--mobile-image-offset-y)) rotateY(90deg);
-
+const mixinMobile = css`
   box-shadow: 0 0 0 1px #0002;
+  transform: rotateY(-90deg) translateX(var(--mobile-image-offset-y)) rotateY(90deg);
+`
+
+const mixinDesktop = css`
+  box-shadow: var(--portfolio-image-desktop-bs), 0 0 0 1px #0002;
+`
+
+export const ImagePlaceholder = styled.div`
+  ${({ mobile }) => mobile ? mixinMobile : mixinDesktop}
+  padding-top: ${({ mobile }) => mobile ? 'calc(100% / 0.5625)' : '56.25%'};
+  background: var(--clr-tertiary);
+`
+
+export const ImageMobile = styled(Img)`
+  ${mixinMobile}
 `
 
 export const ImageDesktop = styled(Img)`
-  display: block;
-  width: 100%;
-
-  box-shadow: var(--portfolio-image-desktop-bs), 0 0 0 1px #0002;
+  ${mixinDesktop}
 `
 
 export const StyledLink = styled.span.attrs(({ to }) => ({

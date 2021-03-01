@@ -51,18 +51,16 @@ export default function PortfolioContainer() {
       {projects.map(project => (
         <Portfolio.Item
           key={project.title}
-          to={`/projects/${project.slug.current}`}
+          to={`/projects/${project.slug?.current || ''}`}
         >
           <Portfolio.Item.Content>
             <Portfolio.Item.Title>{project.title}</Portfolio.Item.Title>
             <Portfolio.Item.Subtitle>{project.publishedAt}</Portfolio.Item.Subtitle>
-            {/* <Portfolio.Item.Heading>Overview</Portfolio.Item.Heading> */}
             <Portfolio.Item.Text>
               {project._rawAbstract && (
                 <BlockContent blocks={project._rawAbstract} />
               )}
             </Portfolio.Item.Text>
-            {/* TODO: convert this to a single component that takes skills array as children or prop */}
             <Portfolio.Item.Keywords>
               {project.skills.map(skill => (
                 <Portfolio.Item.Keywords.Keyword key={skill.title} href={skill.url}>
@@ -73,12 +71,12 @@ export default function PortfolioContainer() {
           </Portfolio.Item.Content>
           <Portfolio.Item.Images>
             <Portfolio.Item.ImageDesktop
-              fluid={project.desktopImage.asset.localFile.childImageSharp.fluid}
+              fluid={project.desktopImage?.asset.localFile.childImageSharp.fluid}
               alt={`${project.title} - Desktop`}
               title={`${project.title} - Desktop`}
             />
             <Portfolio.Item.ImageMobile
-              fluid={project.mobileImage.asset.localFile.childImageSharp.fluid}
+              fluid={project.mobileImage?.asset.localFile.childImageSharp.fluid}
               alt={`${project.title} - Mobile`}
               title={`${project.title} - Mobile`}
             />

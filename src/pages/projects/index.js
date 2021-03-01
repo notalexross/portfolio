@@ -4,7 +4,6 @@ import BlockContent from '@sanity/block-content-to-react'
 import { Layout, SEO, Section, Portfolio } from '../../components'
 
 export default function ProjectsPage({ data: { allSanityProject: { nodes: projects } } }) {
-
   return (
     <Layout>
       <SEO title="Projects" />
@@ -15,7 +14,7 @@ export default function ProjectsPage({ data: { allSanityProject: { nodes: projec
             {projects.map(project => (
               <Portfolio.Item
                 key={project.title}
-                to={`/projects/${project.slug.current}`}
+                to={`/projects/${project.slug?.current || ''}`}
               >
                 <Portfolio.Item.Content>
                   <Portfolio.Item.Title>{project.title}</Portfolio.Item.Title>
@@ -25,7 +24,6 @@ export default function ProjectsPage({ data: { allSanityProject: { nodes: projec
                       <BlockContent blocks={project._rawAbstract} />
                     )}
                   </Portfolio.Item.Text>
-                  {/* TODO: convert this to a single component that takes skills array as children or prop */}
                   <Portfolio.Item.Keywords>
                     {project.skills.map(skill => (
                       <Portfolio.Item.Keywords.Keyword key={skill.title} href={skill.url}>
@@ -36,12 +34,12 @@ export default function ProjectsPage({ data: { allSanityProject: { nodes: projec
                 </Portfolio.Item.Content>
                 <Portfolio.Item.Images>
                   <Portfolio.Item.ImageDesktop
-                    fluid={project.desktopImage.asset.localFile.childImageSharp.fluid}
+                    fluid={project.desktopImage?.asset.localFile.childImageSharp.fluid}
                     alt={`${project.title} - Desktop`}
                     title={`${project.title} - Desktop`}
                   />
                   <Portfolio.Item.ImageMobile
-                    fluid={project.mobileImage.asset.localFile.childImageSharp.fluid}
+                    fluid={project.mobileImage?.asset.localFile.childImageSharp.fluid}
                     alt={`${project.title} - Mobile`}
                     title={`${project.title} - Mobile`}
                   />

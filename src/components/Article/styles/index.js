@@ -45,6 +45,13 @@ export const Images = styled.a`
   margin: 0 auto 5rem;
 `
 
+export const ImagePlaceholder = styled.div`
+  width: 100%;
+  padding-top: ${({ mobile }) => mobile ? 'calc(100% / 0.5625)' : '56.25%'};
+  background: var(--clr-tertiary);
+  box-shadow: var(--bs-reverse);
+`
+
 export const Image = styled(Img)`
   box-shadow: var(--bs-reverse);
 `

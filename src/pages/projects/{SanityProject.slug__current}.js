@@ -20,18 +20,18 @@ export default function ProjectPage({ data: { project, siteSettings, allProjects
 
   return (
     <Layout>
-      <SEO title={project.title} />
+      <SEO title={project.title || 'Project'} />
       <Section className="inverted">
         <Section.Content>
           <Article>
             <Article.Images href={siteUrl} target="_blank" rel="noopener noreferrer">
               <Article.Image
-                fluid={project.desktopImage.asset.localFile.childImageSharp.fluid}
+                fluid={project.desktopImage?.asset.localFile.childImageSharp.fluid}
                 alt={`${project.title} - Desktop`}
                 title={`${project.title} - Desktop`}
               />
               <Article.Image
-                fluid={project.mobileImage.asset.localFile.childImageSharp.fluid}
+                fluid={project.mobileImage?.asset.localFile.childImageSharp.fluid}
                 alt={`${project.title} - Mobile`}
                 title={`${project.title} - Mobile`}
               />
@@ -52,10 +52,19 @@ export default function ProjectPage({ data: { project, siteSettings, allProjects
           {/* TODO: Convert to its own component? */}
           <h2><Link to={`/projects`} style={{ fontFamily: 'var(--ff-primary)' }}>More Work</Link></h2>
           <ul style={{ listStyle: 'none', padding: 0 }}>
-            {allProjects.nodes.map(project => (
-              <li style={{ lineHeight: '1.3', letterSpacing: '0.03em' }} key={project.slug.current}>
-                <Link style={{ fontFamily: 'var(--ff-primary)', fontWeight: 'var(--fw-reg)'}} to={`/projects/${project.slug.current}`}>{project.title}</Link>
-              </li>
+            {allProjects.nodes.map((project, idx) => (
+              project.title && (
+                <li style={{ lineHeight: '1.3', letterSpacing: '0.03em' }} key={idx}>
+                  {project.title && (
+                    <Link
+                      style={{ fontFamily: 'var(--ff-primary)', fontWeight: 'var(--fw-reg)'}}
+                      to={`/projects/${project.slug?.current || ''}`}
+                    >
+                      {project.title}
+                    </Link>
+                  )}
+                </li>
+              )
             ))}
           </ul>
         </Section.Aside>
@@ -70,7 +79,7 @@ export const query = graphql`
       canonical
       domainNames
     }
-    allProjects: allSanityProject {
+    allProjects: allSanityProject(sort: {fields: publishedAt, order: DESC}) {
       nodes {
         title
         slug {

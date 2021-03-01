@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react'
-import { Container, Item, Content, Images, ImagesInner, ImageDesktop, ImageMobileContainer, Shadow, ImageMobile, StyledLink, Title, Subtitle, Heading, Text, Keywords, Keyword, KeywordInner } from './styles'
+import { Container, Item, Content, Images, ImagesInner, ImageDesktop, ImageMobileContainer, ImagePlaceholder, Shadow, ImageMobile, StyledLink, Title, Subtitle, Heading, Text, Keywords, Keyword, KeywordInner } from './styles'
 
 const ItemContext = createContext()
 
@@ -25,15 +25,23 @@ Portfolio.Item.Images = function PortfolioItemImages({ children, ...restProps })
   )
 }
 
-Portfolio.Item.ImageDesktop = function PortfolioItemImageDesktop({ ...restProps }) {
-  return <ImageDesktop {...restProps} />
+Portfolio.Item.ImageDesktop = function PortfolioItemImageDesktop({ fluid, ...restProps }) {
+  return fluid ? (
+    <ImageDesktop fluid={fluid} aspectRatio="1.77778" {...restProps} />
+  ) : (
+    <ImagePlaceholder {...restProps} />
+  )
 }
 
-Portfolio.Item.ImageMobile = function PortfolioItemImageMobile({ ...restProps }) {
+Portfolio.Item.ImageMobile = function PortfolioItemImageMobile({ fluid, ...restProps }) {
   return (
     <ImageMobileContainer>
       <Shadow />
-      <ImageMobile {...restProps} />
+      {fluid ? (
+        <ImageMobile fluid={fluid} aspectRatio="0.5625" {...restProps} />
+      ) : (
+        <ImagePlaceholder mobile {...restProps} />
+      )}
     </ImageMobileContainer>
   )
 }
