@@ -1,39 +1,48 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation } from '@reach/router'
 import { Container, Outer, Inner, Spacer } from './styles'
 
+const shouldBeVisible = () => {
+  return (
+    window.scrollY <= 50 ||
+    window.scrollY >= document.documentElement.clientHeight - 1
+  )
+}
+
+const shouldBeOpaque = () => {
+  return window.scrollY >= document.documentElement.clientHeight - 1
+}
+
 export default function Header({ children, ...restProps }) {
-  const headerRef = useRef()
   const { pathname } = useLocation()
+  const [ shouldTransition, setShouldTransition ] = useState(false)
+  const [ isOpaque, setIsOpaque ] = useState(pathname !== '/')
+  const [ isVisible, setIsVisible ] = useState(pathname !== '/')
 
   useEffect(() => {
-    const headerElement = headerRef.current
-
-    if (pathname !== '/') {
-      headerElement.classList.add('opaque')
-      return
-    }
-
     const handleScroll = () => {
-      if (window.scrollY <= 50) {
-        headerElement.classList.remove('opaque')
-        headerElement.classList.remove('hidden')
-      } else if (window.scrollY < document.documentElement.clientHeight - 1) {
-        headerElement.classList.remove('opaque')
-        headerElement.classList.add('hidden')
-      } else {
-        headerElement.classList.add('opaque')
-        headerElement.classList.remove('hidden')
-      }
+      setIsVisible(pathname !== '/' || shouldBeVisible)
+      setIsOpaque(pathname !== '/' || shouldBeOpaque)
     }
 
+    handleScroll()
     window.addEventListener('scroll', handleScroll)
+
     return () => window.removeEventListener('scroll', handleScroll)
   }, [pathname])
 
+  useEffect(() => {
+    setTimeout(() => setShouldTransition(true), 0)
+  }, [])
+
   return (
     <Container>
-      <Outer ref={headerRef} {...restProps}>
+      <Outer
+        isOpaque={isOpaque}
+        isVisible={isVisible}
+        shouldTransition={shouldTransition}
+        {...restProps}
+      >
         <Inner>{children}</Inner>
       </Outer>
       {pathname !== '/' ? <Spacer>{children}</Spacer> : null}

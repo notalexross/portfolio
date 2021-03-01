@@ -5,7 +5,6 @@ export const Container = styled.header`
 `
 
 export const Outer = styled.div`
-  // position: ${({ position }) => position};
   position: fixed;
   top: 0;
   left: 0;
@@ -14,26 +13,32 @@ export const Outer = styled.div`
 
   user-select: none;
 
+  color: ${({ isOpaque }) => isOpaque ? 'var(--clr-header-opaque)' : 'var(--clr-header)'};
+  background-color: ${({ isOpaque }) => isOpaque ? 'var(--clr-header-bg-opaque)' : 'transparent'};
+  box-shadow: ${({ isOpaque }) => isOpaque ? 'var(--bs-header)' : 'none'};
+
+  opacity: ${({ isVisible }) => isVisible ? 1 : 0};
+  pointer-events: ${({ isVisible }) => isVisible ? 'auto' : 'none'};
+
   transition: background-color var(--transition-time-fast), opacity var(--transition-time-fast) ease-in-out, color var(--transition-time-fast) ease-in-out;
 
-  opacity: 1;
-  color: var(--clr-header);
+  ${({ isVisible }) => !isVisible && `
+    & * {
+      transition: color var(--transition-time-fast) ease-in-out !important;
+      color: #fff0 !important;
+    }
+  `}
 
-  &.opaque {
-    color: var(--clr-header-opaque);
-    background-color: var(--clr-header-bg-opaque);
-    box-shadow: var(--bs-header);
-  }
+  ${({ isVisible, isOpaque }) => isVisible && !isOpaque && `
+    transition: opacity var(--transition-time-fast) ease-in-out, color var(--transition-time-fast) ease-in-out;
+  `}
 
-  &.hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  &.hidden * {
-    transition: color var(--transition-time-fast) ease-in-out;
-    color: #fff0 !important;
-  }
+  ${({ shouldTransition }) => !shouldTransition && `
+    &,
+    & * {
+      transition: none !important;
+    }
+  `}
 `
 
 export const Inner = styled.div`
