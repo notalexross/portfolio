@@ -60,7 +60,6 @@ const GlobalStyle = createGlobalStyle`
   //   --bs-header: 0 3px 8px #0004;
 
   //   --clr-active-link: #ff9300; // when at top of page
-  //   --clr-active-link-opaque: #ff9300; // when at top of page
 
   //   --clr-footer: white;
   //   --clr-footer-bg: #191919;
@@ -94,7 +93,6 @@ const GlobalStyle = createGlobalStyle`
     --bs-header: 0 3px 8px #0004;
 
     --clr-active-link: var(--clr-accent-primary); // when at top of page
-    --clr-active-link-opaque: var(--clr-accent-primary); // when not at top of page
 
     --clr-footer: var(--clr-primary);
     --clr-footer-bg: var(--clr-secondary);
