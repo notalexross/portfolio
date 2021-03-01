@@ -8,6 +8,6 @@
 
 exports.onRenderBody = ({ setBodyAttributes }) => {
   setBodyAttributes({
-      className: 'light-theme'
-    });
-};
+    className: 'light-theme'
+  })
+}
