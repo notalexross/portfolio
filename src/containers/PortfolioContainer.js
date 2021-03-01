@@ -1,51 +1,8 @@
 import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
 import BlockContent from '@sanity/block-content-to-react'
 import { Portfolio } from '../components'
 
-export default function PortfolioContainer() {
-  const { sanityContent: { featuredProjects: projects } } = useStaticQuery(graphql`
-    query portfolioQuery {
-      sanityContent {
-        featuredProjects {
-          title
-          _rawAbstract
-          slug {
-            current
-          }
-          skills {
-            title
-            url
-          }
-          desktopImage {
-            asset {
-              localFile {
-                childImageSharp {
-                  fluid(maxWidth: 1920) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-            }
-          }
-          mobileImage {
-            asset {
-              localFile {
-                childImageSharp {
-                  fluid(maxWidth: 1920) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `)
-
-  // NOTE: must add a maxWidth to fluid requests, otherwise maxes out at 800px wide.
-
+export default function PortfolioContainer({ projects }) {
   return (
     <Portfolio>
       {projects.map(project => (

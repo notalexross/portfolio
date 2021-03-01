@@ -9,7 +9,8 @@ import {
   FeatureContainer,
 } from "../containers"
 
-export default function Home({ data = {} } = {}) {
+export default function Home({ data: { sanityContent: { _rawAbout, featuredProjects: projects } } }) {
+
   return (
     <Layout>
       <SEO title="Home" />
@@ -21,8 +22,8 @@ export default function Home({ data = {} } = {}) {
           <Section.Content>
             <Section.Title>About Me</Section.Title>
             <Section.Text>
-              {data.sanityContent?._rawAbout && (
-                <BlockContent blocks={data.sanityContent?._rawAbout} />
+              {_rawAbout && (
+                <BlockContent blocks={_rawAbout} />
               )}
             </Section.Text>
           </Section.Content>
@@ -42,7 +43,7 @@ export default function Home({ data = {} } = {}) {
             <Section.Title>
               <Link to="/projects" style={{ fontFamily: 'var(--ff-primary)' }}>My Work</Link>
             </Section.Title>
-            <PortfolioContainer />
+            <PortfolioContainer projects={projects} />
           </Section.Content>
         </Section>
       </ScrollNav.Wrapper>
@@ -58,10 +59,44 @@ export default function Home({ data = {} } = {}) {
   )
 }
 
+// NOTE: Must add a maxWidth to fluid image requests, otherwise maxes out at 800px wide.
 export const query = graphql`
   query {
     sanityContent {
       _rawAbout
+      featuredProjects {
+        title
+        _rawAbstract
+        slug {
+          current
+        }
+        skills {
+          title
+          url
+        }
+        desktopImage {
+          asset {
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 1920) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+        }
+        mobileImage {
+          asset {
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 1920) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 `

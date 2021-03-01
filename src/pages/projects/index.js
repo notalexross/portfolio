@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import BlockContent from '@sanity/block-content-to-react'
-import { Layout, SEO, Section, Portfolio } from '../../components'
+import { Layout, SEO, Section } from '../../components'
+import { PortfolioContainer } from '../../containers'
 
 export default function ProjectsPage({ data: { allSanityProject: { nodes: projects } } }) {
   return (
@@ -10,43 +10,7 @@ export default function ProjectsPage({ data: { allSanityProject: { nodes: projec
       <Section className="inverted">
         <Section.Content>
           <Section.Title>All Work</Section.Title>
-          <Portfolio>
-            {projects.map(project => (
-              <Portfolio.Item
-                key={project.title}
-                to={`/projects/${project.slug?.current || ''}`}
-              >
-                <Portfolio.Item.Content>
-                  <Portfolio.Item.Title>{project.title}</Portfolio.Item.Title>
-                  <Portfolio.Item.Subtitle>{project.publishedAt}</Portfolio.Item.Subtitle>
-                  <Portfolio.Item.Text>
-                    {project._rawAbstract && (
-                      <BlockContent blocks={project._rawAbstract} />
-                    )}
-                  </Portfolio.Item.Text>
-                  <Portfolio.Item.Keywords>
-                    {project.skills.map(skill => (
-                      <Portfolio.Item.Keywords.Keyword key={skill.title} href={skill.url}>
-                        {skill.title}
-                      </Portfolio.Item.Keywords.Keyword>
-                    ))}
-                  </Portfolio.Item.Keywords>
-                </Portfolio.Item.Content>
-                <Portfolio.Item.Images>
-                  <Portfolio.Item.ImageDesktop
-                    fluid={project.desktopImage?.asset.localFile.childImageSharp.fluid}
-                    alt={`${project.title} - Desktop`}
-                    title={`${project.title} - Desktop`}
-                  />
-                  <Portfolio.Item.ImageMobile
-                    fluid={project.mobileImage?.asset.localFile.childImageSharp.fluid}
-                    alt={`${project.title} - Mobile`}
-                    title={`${project.title} - Mobile`}
-                  />
-                </Portfolio.Item.Images>
-              </Portfolio.Item>
-            ))}
-          </Portfolio>
+          <PortfolioContainer projects={projects} />
         </Section.Content>
       </Section>
     </Layout>
