@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Container = styled.footer`
   background-color: var(--clr-footer-bg);
   color: var(--clr-footer);
-  padding: 8rem 0 4rem;
+  padding: 8rem 0 0;
 
   position: relative;
 
@@ -16,6 +16,8 @@ export const Inner = styled.div`
   padding: 0 var(--min-margin);
 
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 
   & ul {
@@ -37,4 +39,11 @@ export const ScrollAnchor = styled.a`
   transform: translateX(-50%);
   font-size: 3rem;
   display: block;
+`
+
+export const Copyright = styled.p`
+  font-family: var(--ff-primary);
+  font-size: 0.8rem;
+  opacity: 0.5;
+  margin: 3rem 0 2rem;
 `
