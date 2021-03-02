@@ -24,6 +24,8 @@ export default function ProjectPage({ data: { project, siteSettings, allProjects
       <Section className="inverted">
         <Section.Content>
           <Article>
+            <Article.Title>{project.title}</Article.Title>
+            <Article.Subtitle>{project.publishedAt}</Article.Subtitle>
             <Article.Images href={siteUrl} target="_blank" rel="noopener noreferrer">
               <Article.Image
                 fluid={project.desktopImage?.asset.localFile.childImageSharp.fluid}
@@ -36,8 +38,6 @@ export default function ProjectPage({ data: { project, siteSettings, allProjects
                 title={`${project.title} - Mobile`}
               />
             </Article.Images>
-            <Article.Title>{project.title}</Article.Title>
-            <Article.Subtitle>{project.publishedAt}</Article.Subtitle>
             <Article.Keywords keywords={project.skills} />
             <Article.Body>
               {project._rawBody && <BlockContent blocks={project._rawBody} />}
@@ -92,7 +92,8 @@ export const query = graphql`
       subdomain
       url
       skills {
-        id
+        title,
+        url
       }
       publishedAt
       _rawBody

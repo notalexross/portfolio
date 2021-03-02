@@ -4,6 +4,8 @@ import {
   Title,
   Subtitle,
   Keywords,
+  Keyword,
+  KeywordInner,
   Body,
   Link,
   Images,
@@ -23,8 +25,22 @@ Article.Subtitle = function ArticleSubtitle({ children, ...restProps }) {
   return <Subtitle {...restProps}>{children}</Subtitle>
 }
 
-Article.Keywords = function ArticleKeywords({ children, ...restProps }) {
-  return <Keywords {...restProps}>{children}</Keywords>
+Article.Keywords = function ArticleKeywords({ keywords, ...restProps }) {
+  const handleClick = event => {
+    event.target.blur()
+  }
+
+  return (
+    <Keywords {...restProps}>
+      {keywords.map(keyword => (
+        <Keyword key={keyword.title}>
+          <KeywordInner href={keyword.url} target="_blank" rel="noopener noreferrer" onClick={handleClick}>
+            {keyword.title}
+          </KeywordInner>
+        </Keyword>
+      ))}
+    </Keywords>
+  )
 }
 
 Article.Body = function ArticleBody({ children, ...restProps }) {
