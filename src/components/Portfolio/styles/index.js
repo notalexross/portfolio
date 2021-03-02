@@ -2,7 +2,16 @@ import styled, { css } from 'styled-components'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 
-export const Container = styled.div``
+export const Container = styled.div`
+  --mobile-image-offset-y: 50%; // relative to width of mobile image
+  --mobile-offset-right: 3rem;
+  --mobile-offset-bottom: 2rem;
+
+  @media (min-width: 800px) {
+    --mobile-offset-right: 0rem;
+    --mobile-offset-bottom: 0rem;
+  }
+`
 
 export const Title = styled.h1`
   margin-bottom: 0.2em;
@@ -28,42 +37,39 @@ export const Images = styled.div.attrs(({ to }) => ({
   grid-area: images;
   height: fit-content;
 
-  perspective: 1000px;
-  perspective-origin: var(--portfolio-images-perspective-origin);
+  padding-right: var(--mobile-offset-right);
+  padding-bottom: var(--mobile-offset-bottom);
 
-  // transition: transform var(--transition-time-fast) ease-in-out;
-  // &:hover {
-  //   --portfolio-images-transform: none;
-  //   transform: scale(0.85);
-  //   transition: transform var(--transition-time-fast) ease-in-out;
-  // }
+  @media (min-width: 800px) {
+    perspective: 1000px;
+    perspective-origin: var(--portfolio-images-perspective-origin);
+  }
 `
 
 export const ImagesInner = styled.div`
   position: relative;
   height: fit-content;
 
-  transform-style: preserve-3d;
-
-  transform-origin: var(--portfolio-images-transform-origin);
-  transform: var(--portfolio-images-transform);
-
-  transition: transform var(--transition-time-fast) ease-in-out;
+  @media (min-width: 800px) {
+    transform-style: preserve-3d;
+    transform-origin: var(--portfolio-images-transform-origin);
+    transform: var(--portfolio-images-transform);
+    transition: transform var(--transition-time-fast) ease-in-out;
+  }
 `
 
 export const ImageMobileContainer = styled.div`
-  position: relative;
-  max-width: 25%;
-  width: 100%;
-
   position: absolute;
-  bottom: 0;
-  right: 0;
-  left: var(--portfolio-images-mobile-position-left);
+  width: 100%;
+  max-width: 25%;
 
-  --mobile-image-offset-y: 50%; // relative to width of mobile image
+  bottom: calc(-1 * var(--mobile-offset-bottom));
+  right: calc(-1 * var(--mobile-offset-right));
 
-  transform-style: inherit; // Required in firefox for some reason.
+  @media (min-width: 800px) {
+    transform-style: inherit; // Required in firefox for some reason.
+    left: var(--portfolio-images-mobile-position-left);
+  }
 `
 
 export const Shadow = styled.div`
@@ -164,17 +170,12 @@ export const Keyword = styled.li`
 
 export const KeywordInner = styled.a`
   display: inline-block;
-
   font-family: var(--ff-primary);
   font-weight: var(--fw-reg);
-
-  // background-color: var(--clr-accent-primary);
-  // color: var(--clr-dark);
   background-color: var(--clr-primary);
   color: var(--clr-secondary);
   border-radius: 0.2rem;
   padding: 0.25em 0.6em;
-
   transition: background-color var(--transition-time-fast) ease-in-out, color var(--transition-time-fast) ease-in-out;
 
   &:hover,
@@ -185,29 +186,20 @@ export const KeywordInner = styled.a`
   }
 `
 
-// TODO: Refactor this to be less complicated
 export const Item = styled.article`
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-areas:
-    'images content'
-    'images content';
-  grid-column-gap: 1rem;
-
-  &:nth-child(even) {
-    grid-template-areas:
-      'content images'
-      'content images';
-  }
-
-  position: relative;
+  gap: 2rem 1rem;
 
   &:not(:last-child) {
-    margin-bottom: 12rem;
+    padding-bottom: 6rem;
+    margin-bottom: 6rem;
+
     &::after {
       content: '';
       position: absolute;
-      bottom: -6rem;
+      bottom: 0;
       left: 50%;
       transform: translateX(-50%);
       height: 1px;
@@ -217,49 +209,32 @@ export const Item = styled.article`
     }
   }
 
+  grid-template-areas:
+    'images images'
+    'content content';
+
+  --portfolio-image-desktop-bs: var(--bs-reverse);
   --portfolio-images-perspective-origin: 25% 50%;
   --portfolio-images-transform-origin: 0 0 0;
-  --portfolio-images-transform: rotateY(15deg);
-  --portfolio-image-desktop-bs: var(--bs);
+
   &:nth-child(even) {
     --portfolio-images-perspective-origin: 75% 50%;
     --portfolio-images-transform-origin: 100% 0 0;
-    --portfolio-images-transform: rotateY(-15deg);
-    --portfolio-images-mobile-position-left: 0;
-    --portfolio-image-desktop-bs: var(--bs-reverse);
   }
 
-  // TODO: min-width, not max-width;
-  // maybe move to global styles if can;
+  @media (min-width: 800px) {
+    grid-template-areas: 'images content';
+    --portfolio-images-transform: rotateY(15deg);
+    --portfolio-images-mobile-position-left: auto;
 
-  @media (max-width: 800px) {
-    &,
     &:nth-child(even) {
-      grid-template-areas:
-        'images images'
-        'content content';
-      --portfolio-images-transform: none;
-      --portfolio-image-desktop-bs: var(--bs-reverse);
+      grid-template-areas: 'content images';
+      --portfolio-images-transform: rotateY(-15deg);
+      --portfolio-images-mobile-position-left: 0;
+    }
 
-      & ${Images} {
-        --mobile-offset-right: 3rem;
-        --mobile-offset-bottom: 2rem;
-
-        perspective: unset;
-        margin-bottom: 2rem;
-        padding-right: var(--mobile-offset-right);
-        padding-bottom: var(--mobile-offset-bottom);
-
-        &:hover {
-          transform: none;
-        }
-
-        & ${ImageMobileContainer} {
-          left: unset;
-          right: calc(-1 * var(--mobile-offset-right));
-          bottom: calc(-1 * var(--mobile-offset-bottom));
-        }
-      }
+    &:nth-child(odd) {
+      --portfolio-image-desktop-bs: var(--bs);
     }
   }
 `
