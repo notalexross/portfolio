@@ -8,15 +8,17 @@ export const Container = styled.section`
 export const Inner = styled.div`
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 5rem var(--min-margin);
+  padding: 3rem var(--min-margin);
+
+  @media (min-width: 700px) {
+    padding: 6rem var(--min-margin);
+  }
 
   @media (min-width: 850px) {
-    & {
-      display: flex;
-      flex-direction: row;
-      & > * + * {
-        margin-left: 3rem;
-      }
+    display: flex;
+    flex-direction: row;
+    & > * + * {
+      margin-left: 3rem;
     }
   }
 `
@@ -28,8 +30,6 @@ export const Title = styled.h1`
 
 export const Content = styled.div`
   width: 100%;
-  // padding: 5rem 0;
-  margin-bottom: 1.5rem;
 `
 
 export const Text = styled.div`
@@ -39,5 +39,26 @@ export const Text = styled.div`
 
 export const Aside = styled.div`
   min-width: 15em;
-  // background: aquamarine;
+  margin-top: 2rem;
+
+  & h2 {
+    font-size: 2em;
+  }
+
+  & h2 > a {
+    font-family: var(--ff-primary);
+  }
+
+  & ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  & li {
+    line-height: 1.3;
+  }
+
+  @media (min-width: 850px) {
+    margin-top: 0;
+  }
 `

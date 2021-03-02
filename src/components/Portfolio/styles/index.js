@@ -193,8 +193,8 @@ export const Item = styled.article`
   gap: 2rem 1rem;
 
   &:not(:last-child) {
-    padding-bottom: 6rem;
-    margin-bottom: 6rem;
+    padding-bottom: 4rem;
+    margin-bottom: 4rem;
 
     &::after {
       content: '';
@@ -220,6 +220,13 @@ export const Item = styled.article`
   &:nth-child(even) {
     --portfolio-images-perspective-origin: 75% 50%;
     --portfolio-images-transform-origin: 100% 0 0;
+  }
+
+  @media (min-width: 700px) {
+    &:not(:last-child) {
+      padding-bottom: 6rem;
+      margin-bottom: 6rem;
+    }
   }
 
   @media (min-width: 800px) {

@@ -50,14 +50,13 @@ export default function ProjectPage({ data: { project, siteSettings, allProjects
         </Section.Content>
         <Section.Aside>
           {/* TODO: Convert to its own component? */}
-          <h2><Link to={`/projects`} style={{ fontFamily: 'var(--ff-primary)' }}>More Work</Link></h2>
-          <ul style={{ listStyle: 'none', padding: 0 }}>
+          <h2><Link to={`/projects`}>More Work</Link></h2>
+          <ul>
             {allProjects.nodes.map((project, idx) => (
               project.title && (
-                <li style={{ lineHeight: '1.3', letterSpacing: '0.03em' }} key={idx}>
+                <li key={idx}>
                   {project.title && (
                     <Link
-                      style={{ fontFamily: 'var(--ff-primary)', fontWeight: 'var(--fw-reg)'}}
                       to={`/projects/${project.slug?.current || ''}`}
                     >
                       {project.title}
