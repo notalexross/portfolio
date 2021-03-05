@@ -3,6 +3,8 @@ import styled from 'styled-components'
 export const Container = styled.section`
   color: var(--clr-primary);
   background-color: var(--clr-secondary);
+
+  font-size: 1.125rem;
 `
 
 export const Inner = styled.div`
@@ -14,7 +16,7 @@ export const Inner = styled.div`
     padding: 6rem var(--min-margin);
   }
 
-  @media (min-width: 850px) {
+  @media (min-width: 950px) {
     display: flex;
     flex-direction: row;
     & > * + * {
@@ -34,7 +36,26 @@ export const Content = styled.div`
 
 export const Text = styled.div`
   line-height: 1.4;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
+  font-size: 1.2rem;
+
+  & > div > * {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+  }
+
+  & > div > *:first-child {
+    margin-top: 0;
+  }
+
+  & > div > *:last-child {
+    margin-bottom: 0;
+  }
+  
+  & a:hover,
+  & a:focus {
+    color: var(--clr-accent-secondary);
+  }
 `
 
 export const Aside = styled.div`
@@ -58,7 +79,11 @@ export const Aside = styled.div`
     line-height: 1.3;
   }
 
-  @media (min-width: 850px) {
+  & li > a {
+    font-weight: var(--fw-reg);
+  }
+
+  @media (min-width: 950px) {
     margin-top: 0;
   }
 `

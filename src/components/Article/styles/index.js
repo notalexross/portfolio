@@ -2,8 +2,10 @@ import styled from 'styled-components'
 import Img from 'gatsby-image'
 
 export const Container = styled.article`
+  line-height: 1.5;
+
   display: grid;
-  gap: 1rem;
+  gap: 0.8rem;
   grid-template-areas:
     'title'
     'subtitle'
@@ -12,7 +14,7 @@ export const Container = styled.article`
     'body'
     'link';
 
-  @media (min-width: 850px) {
+  @media (min-width: 950px) {
   grid-template-areas:
     'images'
     'keywords'
@@ -43,8 +45,9 @@ export const Keywords = styled.ul`
   padding: 0;
   display: flex;
   margin: 0;
+  margin-top: 0.3em;
   flex-wrap: wrap;
-  font-size: 0.9em;
+  font-size: 0.95em;
 
   & > :not(:last-child) {
     margin-right: 0.3em;
@@ -53,6 +56,7 @@ export const Keywords = styled.ul`
 
 export const Keyword = styled.li`
   margin-bottom: 0.3em;
+  line-height: 1.15;
 `
 
 export const KeywordInner = styled.a`
@@ -75,14 +79,17 @@ export const KeywordInner = styled.a`
 
 export const Body = styled.div`
   grid-area: body;
-  // margin-bottom: 1.5rem;
-  line-height: 1.2;
 
   & p,
   & ul,
   & ol {
     letter-spacing: 0.005em;
     font-family: var(--ff-secondary);
+  }
+
+  & a:hover,
+  & a:focus {
+    color: var(--clr-accent-secondary);
   }
 `
 

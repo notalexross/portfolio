@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 
 export const Container = styled.header`
   background-color: var(--clr-header-bg-opaque);
+  font-size: 1.1rem;
 `
 
 export const Outer = styled.div`
@@ -139,7 +140,7 @@ export const Navbar = styled.div`
     width: 0;
   }
 
-  @media (min-width: 700px) {
+  @media (min-width: 800px) {
     & > *:not(${Nav}) {
       visibility: unset;
       width: unset;

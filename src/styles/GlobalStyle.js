@@ -110,6 +110,7 @@ const GlobalStyle = createGlobalStyle`
       --fs-root: 16px;
       --fs-feature-title: 4em;
       --fs-feature-subtitle: 1.5em;
+      --min-margin: 1.5rem;
     }
   }
 

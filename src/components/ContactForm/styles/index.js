@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   position: relative;
+  font-size: 1.2rem;
 
   // max-width: 45rem;
 `

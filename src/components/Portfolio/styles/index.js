@@ -3,6 +3,8 @@ import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 
 export const Container = styled.div`
+  font-size: 1rem;
+
   --mobile-image-offset-y: 50%; // relative to width of mobile image
   --mobile-offset-right: 3rem;
   --mobile-offset-bottom: 2rem;
@@ -149,6 +151,12 @@ export const Text = styled.div`
 
   line-height: 1.2;
   letter-spacing: 0.005em;
+  font-size: 1.125em;
+  
+  & a:hover,
+  & a:focus {
+    color: var(--clr-accent-secondary);
+  }
 `
 
 export const Keywords = styled.ul`
@@ -157,7 +165,7 @@ export const Keywords = styled.ul`
   display: flex;
   margin-bottom: 0;
   flex-wrap: wrap;
-  font-size: 0.9em;
+  font-size: 0.95em;
 
   & > :not(:last-child) {
     margin-right: 0.3em;
