@@ -2,8 +2,10 @@ import React from "react"
 import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
+import { useLocation } from '@reach/router'
 
 export default function SEO({ description, lang, meta, title }) {
+  const { pathname } = useLocation()
   const { sanitySiteSettings: site } = useStaticQuery(
     graphql`
       query siteMetaQuery {
@@ -49,7 +51,7 @@ export default function SEO({ description, lang, meta, title }) {
       <meta name="twitter:description" content={metaDescription} />
       <meta name="twitter:image" content={imageURL} />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
-      <link rel="canonical" href={site?.canonical} />
+      <link rel="canonical" href={`${site?.canonical}${pathname}`} />
     </Helmet>
   )
 }
