@@ -12,6 +12,13 @@ export default function SEO({ description, lang, meta, title }) {
           description
           keywords
           canonical
+          image {
+            asset {
+              fixed(width: 1200) {
+                src
+              }
+            }
+          }
         }
       }
     `
@@ -19,6 +26,7 @@ export default function SEO({ description, lang, meta, title }) {
 
   const metaDescription = description || site?.description
   const defaultTitle = site?.title
+  const imageURL = site?.image?.asset?.fixed?.src
 
   return (
     <Helmet
@@ -34,11 +42,12 @@ export default function SEO({ description, lang, meta, title }) {
       <meta property="og:title" content={title} />
       <meta property="og:description" content={metaDescription} />
       <meta property="og:type" content="website" />
-      {/* TODO: og:image, twitter:image (from cms)*/}
-      <meta name="twitter:card" content="summary" />
+      <meta property="og:image" content={imageURL} />
+      <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:creator" content={site?.author || ``} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={metaDescription} />
+      <meta name="twitter:image" content={imageURL} />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
       <link rel="canonical" href={site?.canonical} />
     </Helmet>
