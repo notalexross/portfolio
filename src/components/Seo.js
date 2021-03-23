@@ -39,13 +39,13 @@ export default function SEO({ description, lang, meta, title }) {
       <title>{title}</title>
       <meta name="description" content={metaDescription} />
       <meta name="keywords" content={site?.keywords.join(', ')} />
-      <meta property="og:title" content={title} />
+      <meta property="og:title" content={defaultTitle} />
       <meta property="og:description" content={metaDescription} />
       <meta property="og:type" content="website" />
       <meta property="og:image" content={imageURL} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:creator" content={site?.author || ``} />
-      <meta name="twitter:title" content={title} />
+      <meta name="twitter:title" content={defaultTitle} />
       <meta name="twitter:description" content={metaDescription} />
       <meta name="twitter:image" content={imageURL} />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
