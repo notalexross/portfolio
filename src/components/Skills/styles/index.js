@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-
 export const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, var(--hexagon-width, 9.5em));
@@ -18,9 +17,7 @@ export const ItemsContainer = styled.div`
   padding-top: calc(3 * 57.73502692% + var(--hexagon-gap, 1em));
 
   &:last-of-type {
-    ${({ onlyOneChild }) => onlyOneChild && (`
-      padding-top: calc(1.5 * 57.73502692%);
-    `)}
+    ${({ onlyOneChild }) => onlyOneChild && 'padding-top: calc(1.5 * 57.73502692%);'}
   }
 
   pointer-events: none;
@@ -48,8 +45,8 @@ export const Anchor = styled.a`
   text-decoration: none;
   color: unset;
 
-  transition: transform var(--transition-time-fast) ease-in-out, background-color var(--transition-time-fast) ease-in-out;
-
+  transition: transform var(--transition-time-fast) ease-in-out,
+    background-color var(--transition-time-fast) ease-in-out;
 
   background-color: var(--hexagon-clr-bg, #fff);
   color: var(--hexagon-clr, #000);

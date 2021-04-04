@@ -1,5 +1,24 @@
 import React, { createContext, useContext } from 'react'
-import { Container, Item, Content, Images, ImagesInner, ImageDesktop, ImageMobileContainer, ImagePlaceholder, Shadow, ImageMobile, StyledLink, Title, Subtitle, Heading, Text, Keywords, Keyword, KeywordInner } from './styles'
+import {
+  Container,
+  Item,
+  Content,
+  Images,
+  ImagesInner,
+  ImageDesktop,
+  ImageMobileContainer,
+  ImagePlaceholder,
+  Shadow,
+  ImageMobile,
+  StyledLink,
+  Title,
+  Subtitle,
+  Heading,
+  Text,
+  Keywords,
+  Keyword,
+  KeywordInner
+} from './styles'
 
 const ItemContext = createContext()
 
@@ -76,14 +95,20 @@ Portfolio.Item.Keywords = function PortfolioItemKeywords({ children, ...restProp
   return <Keywords {...restProps}>{children}</Keywords>
 }
 
-Portfolio.Item.Keywords.Keyword = function PortfolioItemKeywordsKeyword({ href, children, ...restProps }) {
+Portfolio.Item.Keywords.Keyword = function PortfolioItemKeywordsKeyword({
+  href,
+  children,
+  ...restProps
+}) {
   const handleClick = event => {
     event.target.blur()
   }
 
   return (
     <Keyword {...restProps}>
-      <KeywordInner href={href} target="_blank" rel="noopener noreferrer" onClick={handleClick}>{children}</KeywordInner>
+      <KeywordInner href={href} target="_blank" rel="noopener noreferrer" onClick={handleClick}>
+        {children}
+      </KeywordInner>
     </Keyword>
   )
 }

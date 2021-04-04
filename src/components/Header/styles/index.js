@@ -17,10 +17,8 @@ export const Outer = styled.div`
   color: var(--clr-header-opaque);
   background-color: var(--clr-header-bg-opaque);
   box-shadow: var(--bs-header);
-  transition:
-    background-color var(--transition-time-fast),
-    opacity var(--transition-time-fast) ease-in-out,
-    color var(--transition-time-fast) ease-in-out;
+  transition: background-color var(--transition-time-fast),
+    opacity var(--transition-time-fast) ease-in-out, color var(--transition-time-fast) ease-in-out;
 
   ${({ shouldTransition }) => !shouldTransition && `
     &,
@@ -47,7 +45,8 @@ export const Outer = styled.div`
       }
     `}
 
-    ${({ isHidden, isTransparent }) => !isHidden && isTransparent && `
+    ${({ isHidden, isTransparent }) => !isHidden &&
+      isTransparent && `
       transition:
         opacity var(--transition-time-fast) ease-in-out,
         color var(--transition-time-fast) ease-in-out;
@@ -76,7 +75,7 @@ export const Toggler = styled.div`
   min-width: 1.45em;
   border-radius: 0.05em;
   cursor: pointer;
-  
+
   & > i {
     display: block;
     opacity: 0.9;
@@ -126,7 +125,7 @@ export const NavInner = styled.ul`
 `
 
 export const Navbar = styled.div`
-  display: ${({ isOpen }) => isOpen ? 'grid' : 'none'};
+  display: ${({ isOpen }) => (isOpen ? 'grid' : 'none')};
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   overflow: hidden;
@@ -155,7 +154,7 @@ export const Navbar = styled.div`
 export const NavItem = styled.li``
 
 export const StyledLink = styled.span.attrs(({ to }) => ({
-  as: to && Link,
+  as: to && Link
 }))`
   font-family: var(--ff-primary);
   text-decoration: none;

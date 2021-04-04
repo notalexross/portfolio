@@ -1,7 +1,7 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 import { GlobalStyle } from '../styles'
-import { ScrollNav } from '.'
+import ScrollNav from './ScrollNav'
 import { HeaderContainer, FooterContainer } from '../containers'
 import 'normalize.css'
 
@@ -9,13 +9,13 @@ export default function Layout({ children }) {
   return (
     <ScrollNav.ContextProvider>
       <GlobalStyle />
-        <HeaderContainer />
-        <main>{children}</main>
-        <FooterContainer />
+      <HeaderContainer />
+      <main>{children}</main>
+      <FooterContainer />
     </ScrollNav.ContextProvider>
   )
 }
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired
 }

@@ -12,7 +12,6 @@ export const Inner = styled.div`
   margin: 0 auto;
   padding: 0 var(--min-margin);
 
-
   // min-height: 100vh;
   // min-height: -webkit-fill-available;
   min-height: var(--window-height, 100vh);

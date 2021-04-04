@@ -1,7 +1,7 @@
-import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import BlockContent from "@sanity/block-content-to-react"
-import { Feature } from "../components"
+import React from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
+import BlockContent from '@sanity/block-content-to-react'
+import { Feature } from '../components'
 
 export default function FeatureContainer() {
   // const { sanityContent: content } = useStaticQuery(
@@ -53,6 +53,8 @@ export default function FeatureContainer() {
   )
 
   const imageFluid = content?.homeImage[0]?.image.asset.localFile.childImageSharp.fluid
+  // eslint-disable-next-line no-underscore-dangle
+  const subtitle = content?._rawHomeSubtitle
 
   // NOTE: gatsby-background-image issue:
   // when using either sanity or local, you have to add a maxWidth! Otherwise it defaults to 800px max-width...
@@ -62,24 +64,16 @@ export default function FeatureContainer() {
 
   return (
     <Feature
-      fluid={[
-        imageFluid || '',
-        `var(--bg-feature-gradient, none)`,
-      ]}
+      fluid={[imageFluid || '', 'var(--bg-feature-gradient, none)']}
       credit={content?.homeImage[0]?.credit}
     >
       <Feature.Content>
         <Feature.Title>{content?.homeTitle}</Feature.Title>
         <Feature.Subtitle>
-          {content?._rawHomeSubtitle && (
-            <BlockContent blocks={content?._rawHomeSubtitle} />
-          )}
+          {subtitle && <BlockContent blocks={subtitle} />}
         </Feature.Subtitle>
       </Feature.Content>
-      <Feature.ScrollAnchor
-        className="fas fa-chevron-circle-down"
-        href="#about"
-      />
+      <Feature.ScrollAnchor className="fas fa-chevron-circle-down" href="#about" />
     </Feature>
   )
 }

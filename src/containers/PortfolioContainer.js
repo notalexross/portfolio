@@ -5,18 +5,13 @@ import { Portfolio } from '../components'
 export default function PortfolioContainer({ projects }) {
   return (
     <Portfolio>
-      {projects.map(project => (
-        <Portfolio.Item
-          key={project.title}
-          to={`/projects/${project.slug?.current || ''}`}
-        >
+      {projects.map(({ _rawAbstract: rawAbstract, ...project }) => (
+        <Portfolio.Item key={project.title} to={`/projects/${project.slug?.current || ''}`}>
           <Portfolio.Item.Content>
             <Portfolio.Item.Title>{project.title}</Portfolio.Item.Title>
             <Portfolio.Item.Subtitle>{project.publishedAt}</Portfolio.Item.Subtitle>
             <Portfolio.Item.Text>
-              {project._rawAbstract && (
-                <BlockContent blocks={project._rawAbstract} />
-              )}
+              {rawAbstract && <BlockContent blocks={rawAbstract} />}
             </Portfolio.Item.Text>
             <Portfolio.Item.Keywords>
               {project.skills.map(skill => (

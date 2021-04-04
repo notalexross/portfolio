@@ -176,7 +176,9 @@ const GlobalStyle = createGlobalStyle`
 `
 
 const GlobalStyleWrapper = React.forwardRef(({ ...restProps }, ref) => {
-  const [ windowHeight, setWindowHeight ] = React.useState(typeof window !== 'undefined'  && `${document.documentElement.clientHeight}px`)
+  const [windowHeight, setWindowHeight] = React.useState(
+    typeof window !== 'undefined' && `${document.documentElement.clientHeight}px`
+  )
 
   React.useEffect(() => {
     const handleResize = () => setWindowHeight(`${document.documentElement.clientHeight}px`)
@@ -184,7 +186,7 @@ const GlobalStyleWrapper = React.forwardRef(({ ...restProps }, ref) => {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  return <GlobalStyle windowHeight={windowHeight} ref={ref} { ...restProps }/>
+  return <GlobalStyle windowHeight={windowHeight} ref={ref} {...restProps} />
 })
 
 // export default GlobalStyle

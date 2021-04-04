@@ -1,9 +1,14 @@
+/* eslint-disable import/no-unused-modules */
 import React from 'react'
 import { graphql } from 'gatsby'
 import { Layout, SEO, Section } from '../../components'
 import { PortfolioContainer } from '../../containers'
 
-export default function ProjectsPage({ data: { allSanityProject: { nodes: projects } } }) {
+export default function ProjectsPage({
+  data: {
+    allSanityProject: { nodes: projects }
+  }
+}) {
   return (
     <Layout>
       <SEO title="Projects" />
@@ -19,7 +24,7 @@ export default function ProjectsPage({ data: { allSanityProject: { nodes: projec
 
 export const query = graphql`
   query allProjectQuery {
-    allSanityProject(sort: {fields: publishedAt, order: DESC}) {
+    allSanityProject(sort: { fields: publishedAt, order: DESC }) {
       nodes {
         title
         _rawAbstract

@@ -1,10 +1,11 @@
 import React from 'react'
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql } from 'gatsby'
 import { Social } from '../components'
 
 export default function SocialContainer() {
-  
-  const { sanityDetails: { social } } = useStaticQuery(
+  const {
+    sanityDetails: { social }
+  } = useStaticQuery(
     graphql`
       query detailsQuery {
         sanityDetails {
@@ -20,9 +21,9 @@ export default function SocialContainer() {
 
   return (
     <Social>
-      {social.map(socialItem => (
-        <Social.Item key={socialItem._key}>
-          <Social.Icon url={socialItem.url} socialNetwork={socialItem.name} title={socialItem.name} />
+      {social.map(({ _key: key, url, name }) => (
+        <Social.Item key={key}>
+          <Social.Icon url={url} socialNetwork={name} title={name} />
         </Social.Item>
       ))}
     </Social>

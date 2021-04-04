@@ -34,7 +34,12 @@ Article.Keywords = function ArticleKeywords({ keywords, ...restProps }) {
     <Keywords {...restProps}>
       {keywords.map(keyword => (
         <Keyword key={keyword.title}>
-          <KeywordInner href={keyword.url} target="_blank" rel="noopener noreferrer" onClick={handleClick}>
+          <KeywordInner
+            href={keyword.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={handleClick}
+          >
             {keyword.title}
           </KeywordInner>
         </Keyword>
@@ -56,9 +61,5 @@ Article.Images = function ArticleImages({ children, ...restProps }) {
 }
 
 Article.Image = function ArticleImage({ fluid, ...restProps }) {
-  return fluid ? (
-    <Image fluid={fluid} {...restProps} />
-  ) : (
-    <ImagePlaceholder {...restProps} />
-  )
+  return fluid ? <Image fluid={fluid} {...restProps} /> : <ImagePlaceholder {...restProps} />
 }

@@ -1,5 +1,5 @@
-import React from "react"
-import { Container, Inner, Title, Content, Text, Aside } from "./styles"
+import React from 'react'
+import { Container, Inner, Title, Content, Text, Aside } from './styles'
 
 export default function Section({ children, ...restProps }) {
   return (

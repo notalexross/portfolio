@@ -15,13 +15,13 @@ export const Container = styled.article`
     'link';
 
   @media (min-width: 950px) {
-  grid-template-areas:
-    'images'
-    'keywords'
-    'title'
-    'subtitle'
-    'body'
-    'link';
+    grid-template-areas:
+      'images'
+      'keywords'
+      'title'
+      'subtitle'
+      'body'
+      'link';
   }
 `
 
@@ -67,7 +67,8 @@ export const KeywordInner = styled.a`
   color: var(--clr-secondary);
   border-radius: 0.2rem;
   padding: 0.25em 0.6em;
-  transition: background-color var(--transition-time-fast) ease-in-out, color var(--transition-time-fast) ease-in-out;
+  transition: background-color var(--transition-time-fast) ease-in-out,
+    color var(--transition-time-fast) ease-in-out;
 
   &:hover,
   &:focus {
@@ -114,7 +115,7 @@ export const Images = styled.a`
 
 export const ImagePlaceholder = styled.div`
   width: 100%;
-  padding-top: ${({ mobile }) => mobile ? 'calc(100% / 0.5625)' : '56.25%'};
+  padding-top: ${({ mobile }) => (mobile ? 'calc(100% / 0.5625)' : '56.25%')};
   background: var(--clr-tertiary);
   box-shadow: var(--bs-reverse);
 `

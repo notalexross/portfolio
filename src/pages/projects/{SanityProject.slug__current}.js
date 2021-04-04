@@ -1,47 +1,63 @@
+/* eslint-disable import/no-unused-modules */
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import BlockContent from '@sanity/block-content-to-react'
 import { Layout, SEO, Section, Article } from '../../components'
 
-export default function ProjectPage({ data: { project, siteSettings, allProjects }, location }) {
-
+export default function ProjectPage({
+  data: {
+    project: {
+      title,
+      subdomain,
+      url,
+      skills,
+      publishedAt,
+      _rawBody: rawBody,
+      desktopImage,
+      mobileImage
+    },
+    siteSettings,
+    allProjects
+  },
+  location
+}) {
   let siteUrl = '#'
-  if (project.url) {
-    siteUrl = project.url
+  if (url) {
+    siteUrl = url
   } else {
-    const projectDomain = siteSettings.domainNames.find(domain => location.hostname?.endsWith(domain))
+    const projectDomain = siteSettings.domainNames.find(domain => (
+      location.hostname?.endsWith(domain)
+    ))
     if (projectDomain) {
-      siteUrl = `https://${project.subdomain}.${projectDomain}`
-    } else if (project.subdomain) {
+      siteUrl = `https://${subdomain}.${projectDomain}`
+    } else if (subdomain) {
       const { protocol, hostname } = new URL(siteSettings.canonical)
-      siteUrl = `${protocol}//${project.subdomain}.${hostname}`
+      siteUrl = `${protocol}//${subdomain}.${hostname}`
     }
   }
 
   return (
     <Layout>
-      <SEO title={project.title || 'Project'} />
+      <SEO title={title || 'Project'} />
       <Section className="inverted">
         <Section.Content>
           <Article>
-            <Article.Title>{project.title}</Article.Title>
-            <Article.Subtitle>{project.publishedAt}</Article.Subtitle>
+            <Article.Title>{title}</Article.Title>
+            <Article.Subtitle>{publishedAt}</Article.Subtitle>
             <Article.Images href={siteUrl} target="_blank" rel="noopener noreferrer">
               <Article.Image
-                fluid={project.desktopImage?.asset.localFile.childImageSharp.fluid}
-                alt={`${project.title} - Desktop`}
-                title={`${project.title} - Desktop`}
+                fluid={desktopImage?.asset.localFile.childImageSharp.fluid}
+                alt={`${title} - Desktop`}
+                title={`${title} - Desktop`}
               />
               <Article.Image
-                fluid={project.mobileImage?.asset.localFile.childImageSharp.fluid}
-                alt={`${project.title} - Mobile`}
-                title={`${project.title} - Mobile`}
+                fluid={mobileImage?.asset.localFile.childImageSharp.fluid}
+                alt={`${title} - Mobile`}
+                title={`${title} - Mobile`}
               />
             </Article.Images>
-            <Article.Keywords keywords={project.skills} />
-            <Article.Body>
-              {project._rawBody && <BlockContent blocks={project._rawBody} />}
-            </Article.Body>
+            <Article.Keywords keywords={skills} />
+            <Article.Body>{rawBody && <BlockContent blocks={rawBody} />}</Article.Body>
             <Article.Link href={siteUrl} target="_blank" rel="noopener noreferrer">
               Go to live Site
             </Article.Link>
@@ -50,21 +66,19 @@ export default function ProjectPage({ data: { project, siteSettings, allProjects
         </Section.Content>
         <Section.Aside>
           {/* TODO: Convert to its own component? */}
-          <h2><Link to={`/projects`}>More Work</Link></h2>
+          <h2>
+            <Link to="/projects">More Work</Link>
+          </h2>
           <ul>
-            {allProjects.nodes.map((project, idx) => (
-              project.title && (
-                <li key={idx}>
-                  {project.title && (
-                    <Link
-                      to={`/projects/${project.slug?.current || ''}`}
-                    >
-                      {project.title}
-                    </Link>
-                  )}
+            {allProjects.nodes.map(
+              project => project.title && (
+                <li key={project.title}>
+                  <Link to={`/projects/${project.slug?.current || ''}`}>
+                    {project.title}
+                  </Link>
                 </li>
               )
-            ))}
+            )}
           </ul>
         </Section.Aside>
       </Section>
@@ -78,7 +92,7 @@ export const query = graphql`
       canonical
       domainNames
     }
-    allProjects: allSanityProject(sort: {fields: publishedAt, order: DESC}) {
+    allProjects: allSanityProject(sort: { fields: publishedAt, order: DESC }) {
       nodes {
         title
         slug {
@@ -91,7 +105,7 @@ export const query = graphql`
       subdomain
       url
       skills {
-        title,
+        title
         url
       }
       publishedAt

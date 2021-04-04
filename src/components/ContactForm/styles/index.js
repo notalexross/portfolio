@@ -45,24 +45,19 @@ export const Input = styled.input.attrs(props => ({
 
   color: var(--clr-secondary);
 
-  transition: color var(--transition-time-fast) ease-in-out, background-color var(--transition-time-fast) ease-in-out;
+  transition: color var(--transition-time-fast) ease-in-out,
+    background-color var(--transition-time-fast) ease-in-out;
   &:focus {
     background-color: var(--clr-accent-primary);
     color: var(--clr-dark);
     transition: none;
   }
 
-  ${({ isError }) => (
-    isError && 'color: var(--clr-error) !important;' 
-  )};
+  ${({ isError }) => isError && 'color: var(--clr-error) !important;'};
 
   resize: none;
-  ${({ isTextarea }) => (
-    isTextarea && (`
-      resize: none;
-      height: 18rem;
-    `)
-  )}
+
+  ${({ isTextarea }) => isTextarea && 'height: 18rem;'}
 `
 
 export const SubmitButton = styled.button`
@@ -80,12 +75,14 @@ export const SubmitButton = styled.button`
   align-self: flex-end;
   // margin-top: 1em;
 
-  transition: color var(--transition-time-fast) ease-in-out, background-color var(--transition-time-fast) ease-in-out, transform var(--transition-time-fast) ease-in-out;
+  transition: color var(--transition-time-fast) ease-in-out,
+    background-color var(--transition-time-fast) ease-in-out,
+    transform var(--transition-time-fast) ease-in-out;
   &:hover,
   &:focus {
     background-color: var(--clr-accent-primary);
     color: var(--clr-dark);
-    transform: scale(1.02   );
+    transform: scale(1.02);
     transition: none;
   }
 `

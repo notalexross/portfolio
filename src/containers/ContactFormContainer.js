@@ -16,8 +16,7 @@ export default function ContactFormContainer() {
       body: new URLSearchParams(formData).toString()
     })
       .then(response => {
-        if (!response.ok)
-          throw new Error(`${response.status} (${response.statusText})`)
+        if (!response.ok) throw new Error(`${response.status} (${response.statusText})`)
         setIsSubmitted(true)
       })
       .catch(error => alert(error))
@@ -42,7 +41,8 @@ export default function ContactFormContainer() {
           maxLength="100"
           minLength="3"
         >
-          Name<span style={{ color: 'var(--clr-accent-primary)' }}>*</span>
+          Name
+          <span style={{ color: 'var(--clr-accent-primary)' }}>*</span>
         </ContactForm.TextInput>
         <ContactForm.TextInput
           type="email"
@@ -52,13 +52,10 @@ export default function ContactFormContainer() {
           maxLength="100"
           minLength="5"
         >
-          Email<span style={{ color: 'var(--clr-accent-primary)' }}>*</span>
+          Email
+          <span style={{ color: 'var(--clr-accent-primary)' }}>*</span>
         </ContactForm.TextInput>
-        <ContactForm.TextInput
-          name="subject"
-          placeholder="Your Subject"
-          maxLength="100"
-        >
+        <ContactForm.TextInput name="subject" placeholder="Your Subject" maxLength="100">
           Subject
         </ContactForm.TextInput>
         <ContactForm.TextInput
@@ -69,17 +66,16 @@ export default function ContactFormContainer() {
           maxLength="2000"
           minLength="10"
         >
-          Message<span style={{ color: 'var(--clr-accent-primary)' }}>*</span>
+          Message
+          <span style={{ color: 'var(--clr-accent-primary)' }}>*</span>
         </ContactForm.TextInput>
         <ContactForm.SubmitButton>Send</ContactForm.SubmitButton>
       </ContactForm.Form>
-      <ContactForm.ConfirmationMessage
-        style={{ display: isSubmitted ? 'unset' : 'none' }}
-      >
+      <ContactForm.ConfirmationMessage style={{ display: isSubmitted ? 'unset' : 'none' }}>
         <p>Message sent!</p>
         <p>
-          Thank you for getting in touch, please expect a response at the email
-          address you provided.
+          Thank you for getting in touch, please expect a response at the email address you
+          provided.
         </p>
       </ContactForm.ConfirmationMessage>
     </ContactForm>

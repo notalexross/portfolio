@@ -1,5 +1,5 @@
-import React from "react"
-import { Container, Item, Anchor, Icon } from "./styles"
+import React from 'react'
+import { Container, Item, Anchor, Icon } from './styles'
 
 export default function Social({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>

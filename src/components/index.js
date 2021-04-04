@@ -9,6 +9,5 @@ export { default as ScrollNav } from './ScrollNav'
 export { default as Section } from './Section'
 export { default as Skills } from './Skills'
 export { default as Social } from './Social'
-
 export { default as SEO } from './Seo'
 export { default as Layout } from './Layout'

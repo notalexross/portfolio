@@ -1,16 +1,20 @@
-import React from "react"
-import { graphql, Link } from "gatsby"
-import BlockContent from "@sanity/block-content-to-react"
-import { SEO, Layout, Section, ScrollNav } from "../components"
+/* eslint-disable import/no-unused-modules */
+import React from 'react'
+import { graphql, Link } from 'gatsby'
+import BlockContent from '@sanity/block-content-to-react'
+import { SEO, Layout, Section, ScrollNav } from '../components'
 import {
   PortfolioContainer,
   SkillsContainer,
   ContactFormContainer,
-  FeatureContainer,
-} from "../containers"
+  FeatureContainer
+} from '../containers'
 
-export default function Home({ data: { sanityContent: { _rawAbout, featuredProjects: projects } } }) {
-
+export default function Home({
+  data: {
+    sanityContent: { _rawAbout, featuredProjects: projects }
+  }
+}) {
   return (
     <Layout>
       <SEO title="Home" />
@@ -21,16 +25,12 @@ export default function Home({ data: { sanityContent: { _rawAbout, featuredProje
         <Section>
           <Section.Content>
             <Section.Title>About Me</Section.Title>
-            <Section.Text>
-              {_rawAbout && (
-                <BlockContent blocks={_rawAbout} />
-              )}
-            </Section.Text>
+            <Section.Text>{_rawAbout && <BlockContent blocks={_rawAbout} />}</Section.Text>
           </Section.Content>
         </Section>
       </ScrollNav.Wrapper>
       <ScrollNav.Wrapper id="skills">
-        <Section className="inverted" style={{ backgroundColor: "var(--clr-tertiary)" }}>
+        <Section className="inverted" style={{ backgroundColor: 'var(--clr-tertiary)' }}>
           <Section.Content>
             <Section.Title>Skills</Section.Title>
             <SkillsContainer />
@@ -41,14 +41,16 @@ export default function Home({ data: { sanityContent: { _rawAbout, featuredProje
         <Section className="inverted">
           <Section.Content>
             <Section.Title>
-              <Link to="/projects" style={{ fontFamily: 'var(--ff-primary)' }}>My Work</Link>
+              <Link to="/projects" style={{ fontFamily: 'var(--ff-primary)' }}>
+                My Work
+              </Link>
             </Section.Title>
             <PortfolioContainer projects={projects} />
           </Section.Content>
         </Section>
       </ScrollNav.Wrapper>
       <ScrollNav.Wrapper id="contact">
-        <Section className="inverted" style={{ backgroundColor: "var(--clr-tertiary)" }}>
+        <Section className="inverted" style={{ backgroundColor: 'var(--clr-tertiary)' }}>
           <Section.Content>
             <Section.Title>Contact Me</Section.Title>
             <ContactFormContainer />

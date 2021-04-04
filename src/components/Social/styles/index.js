@@ -16,7 +16,8 @@ export const Item = styled.li``
 export const Anchor = styled.a`
   text-decoration: none;
   color: unset;
-  transition: color var(--transition-time-fast) ease-in-out, opacity var(--transition-time-fast) ease-in-out;
+  transition: color var(--transition-time-fast) ease-in-out,
+    opacity var(--transition-time-fast) ease-in-out;
 
   &:hover,
   &:focus {

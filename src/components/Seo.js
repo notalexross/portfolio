@@ -1,7 +1,7 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { Helmet } from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Helmet } from 'react-helmet'
+import { useStaticQuery, graphql } from 'gatsby'
 import { useLocation } from '@reach/router'
 
 export default function SEO({ description, lang, meta, title }) {
@@ -33,7 +33,7 @@ export default function SEO({ description, lang, meta, title }) {
   return (
     <Helmet
       htmlAttributes={{
-        lang,
+        lang
       }}
       titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
       meta={meta}
@@ -46,25 +46,30 @@ export default function SEO({ description, lang, meta, title }) {
       <meta property="og:type" content="website" />
       <meta property="og:image" content={imageURL} />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:creator" content={site?.author || ``} />
+      <meta name="twitter:creator" content={site?.author || ''} />
       <meta name="twitter:title" content={defaultTitle} />
       <meta name="twitter:description" content={metaDescription} />
       <meta name="twitter:image" content={imageURL} />
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+        integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc="
+        crossOrigin="anonymous"
+      />
       <link rel="canonical" href={`${site?.canonical}${pathname}`} />
     </Helmet>
   )
 }
 
 SEO.defaultProps = {
-  lang: `en`,
+  lang: 'en',
   meta: [],
-  description: ``,
+  description: ''
 }
 
 SEO.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
 }

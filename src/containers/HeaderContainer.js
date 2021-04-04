@@ -1,6 +1,6 @@
 import React from 'react'
 import { Header, Logo, ScrollNav } from '../components'
-import { SocialContainer } from '.'
+import SocialContainer from './SocialContainer'
 
 export default function HeaderContainer() {
   return (

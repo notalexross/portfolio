@@ -8,42 +8,42 @@ const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
   plugins: [
-    `gatsby-plugin-react-helmet`,
+    'gatsby-plugin-react-helmet',
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `images`,
+        name: 'images',
         path: `${__dirname}/src/images`
       }
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `Daniel Ross`,
-        start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/swallow-icon.png`
+        name: 'gatsby-starter-default',
+        short_name: 'Daniel Ross',
+        start_url: '/',
+        background_color: '#663399',
+        theme_color: '#663399',
+        display: 'minimal-ui',
+        icon: 'src/images/swallow-icon.png'
       }
     },
-    `gatsby-plugin-styled-components`,
+    'gatsby-plugin-styled-components',
     {
-      resolve: `gatsby-plugin-webfonts`,
+      resolve: 'gatsby-plugin-webfonts',
       options: {
         fonts: {
           google: [
             {
-              family: `Open Sans`,
-              variants: [`400`, `800`],
+              family: 'Open Sans',
+              variants: ['400', '800'],
               fontDisplay: 'block'
             },
             {
-              family: `Source Serif Pro`,
-              variants: [`400`, `700`],
+              family: 'Source Serif Pro',
+              variants: ['400', '700'],
               fontDisplay: 'block'
             }
           ]
@@ -51,7 +51,7 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-source-sanity`,
+      resolve: 'gatsby-source-sanity',
       options: {
         projectId: process.env.SANITY_PROJECT_ID,
         dataset: process.env.SANITY_DATASET,

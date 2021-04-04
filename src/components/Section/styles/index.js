@@ -51,7 +51,7 @@ export const Text = styled.div`
   & > div > *:last-child {
     margin-bottom: 0;
   }
-  
+
   & a:hover,
   & a:focus {
     color: var(--clr-accent-secondary);

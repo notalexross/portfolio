@@ -120,8 +120,8 @@ const mixinDesktop = css`
 `
 
 export const ImagePlaceholder = styled.div`
-  ${({ mobile }) => mobile ? mixinMobile : mixinDesktop}
-  padding-top: ${({ mobile }) => mobile ? 'calc(100% / 0.5625)' : '56.25%'};
+  ${({ mobile }) => (mobile ? mixinMobile : mixinDesktop)}
+  padding-top: ${({ mobile }) => (mobile ? 'calc(100% / 0.5625)' : '56.25%')};
   background: var(--clr-tertiary);
 `
 
@@ -152,7 +152,7 @@ export const Text = styled.div`
   line-height: 1.2;
   letter-spacing: 0.005em;
   font-size: 1.125em;
-  
+
   & a:hover,
   & a:focus {
     color: var(--clr-accent-secondary);
@@ -184,7 +184,8 @@ export const KeywordInner = styled.a`
   color: var(--clr-secondary);
   border-radius: 0.2rem;
   padding: 0.25em 0.6em;
-  transition: background-color var(--transition-time-fast) ease-in-out, color var(--transition-time-fast) ease-in-out;
+  transition: background-color var(--transition-time-fast) ease-in-out,
+    color var(--transition-time-fast) ease-in-out;
 
   &:hover,
   &:focus {
