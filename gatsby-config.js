@@ -64,7 +64,15 @@ module.exports = {
         // graphqlTag: 'default',
       }
     },
-    'gatsby-source-sanity-transform-images'
+    'gatsby-source-sanity-transform-images',
+    {
+      resolve: 'gatsby-plugin-eslint',
+      options: {
+        stages: ['develop'],
+        extensions: ['js', 'jsx'],
+        exclude: ['node_modules', '.cache', 'public']
+      }
+    }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

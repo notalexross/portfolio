@@ -1,0 +1,50 @@
+{
+  "globals": {
+    "__PATH_PREFIX__": true
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "extends": ["react-app", "airbnb"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "ignorePatterns": ["/public"],
+  "rules": {
+    "arrow-parens": ["error", "as-needed"],
+    "comma-dangle": ["error", "never"],
+    "linebreak-style": 0,
+    "max-len": [
+      "error",
+      100,
+      2,
+      {
+        "ignoreUrls": true,
+        "ignoreComments": true,
+        "ignoreRegExpLiterals": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true
+      }
+    ],
+    "no-alert": "off",
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "no-else-return": ["error", { "allowElseIf": true }],
+    "no-param-reassign": ["error", { "props": false }],
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true }],
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_", "ignoreRestSiblings": true }],
+    "object-curly-newline": ["error", { "consistent": true }],
+    "operator-linebreak": ["error", "after"],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/prop-types": "off",
+    "semi": ["error", "never"]
+  }
+}
