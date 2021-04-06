@@ -16,8 +16,6 @@ export const Container = styled.div`
 `
 
 export const Title = styled.h1`
-  margin-bottom: 0.2em;
-
   & a {
     font-family: var(--ff-primary);
   }
@@ -26,7 +24,7 @@ export const Title = styled.h1`
 export const Subtitle = styled.p`
   opacity: 0.8;
   font-size: 0.9em;
-  margin: 0 0 1.5rem;
+  margin: 0 0 0.2rem;
 `
 
 export const Content = styled.div`

@@ -68,6 +68,9 @@ export const query = graphql`
       _rawAbout
       featuredProjects {
         title
+        subdomain
+        url
+        sourceUrl
         _rawAbstract
         slug {
           current
@@ -76,6 +79,7 @@ export const query = graphql`
           title
           url
         }
+        publishedAt
         desktopImage {
           asset {
             localFile {

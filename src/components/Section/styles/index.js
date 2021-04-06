@@ -10,7 +10,7 @@ export const Container = styled.section`
 export const Inner = styled.div`
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 3rem var(--min-margin);
+  padding: 3.5rem var(--min-margin);
 
   @media (min-width: 700px) {
     padding: 6rem var(--min-margin);

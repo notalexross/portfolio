@@ -3,38 +3,12 @@ import React from 'react'
 import { Link, graphql } from 'gatsby'
 import BlockContent from '@sanity/block-content-to-react'
 import { Layout, SEO, Section, Article } from '../../components'
+import { ProjectLinksContainer } from '../../containers'
+import { useProjectUrl } from '../../hooks'
 
-export default function ProjectPage({
-  data: {
-    project: {
-      title,
-      subdomain,
-      url,
-      skills,
-      publishedAt,
-      _rawBody: rawBody,
-      desktopImage,
-      mobileImage
-    },
-    siteSettings,
-    allProjects
-  },
-  location
-}) {
-  let siteUrl = '#'
-  if (url) {
-    siteUrl = url
-  } else {
-    const projectDomain = siteSettings.domainNames.find(domain => (
-      location.hostname?.endsWith(domain)
-    ))
-    if (projectDomain) {
-      siteUrl = `https://${subdomain}.${projectDomain}`
-    } else if (subdomain) {
-      const { protocol, hostname } = new URL(siteSettings.canonical)
-      siteUrl = `${protocol}//${subdomain}.${hostname}`
-    }
-  }
+export default function ProjectPage({ data: { project, allProjects } }) {
+  const { title, sourceUrl, skills, publishedAt, rawBody, desktopImage, mobileImage } = project
+  const projectUrl = useProjectUrl(project)
 
   return (
     <Layout>
@@ -42,9 +16,20 @@ export default function ProjectPage({
       <Section className="inverted">
         <Section.Content>
           <Article>
-            <Article.Title>{title}</Article.Title>
-            <Article.Subtitle>{publishedAt}</Article.Subtitle>
-            <Article.Images href={siteUrl} target="_blank" rel="noopener noreferrer">
+            <Article.Heading>
+              <div
+                style={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  alignItems: 'baseline'
+                }}
+              >
+                <Article.Title style={{ marginRight: '0.15em' }}>{title}</Article.Title>
+                <ProjectLinksContainer project={project} />
+              </div>
+              <Article.Subtitle>{publishedAt}</Article.Subtitle>
+            </Article.Heading>
+            <Article.Images href={projectUrl} target="_blank" rel="noopener noreferrer">
               <Article.Image
                 fluid={desktopImage?.asset.localFile.childImageSharp.fluid}
                 alt={`${title} - Desktop`}
@@ -58,11 +43,20 @@ export default function ProjectPage({
             </Article.Images>
             <Article.Keywords keywords={skills} />
             <Article.Body>{rawBody && <BlockContent blocks={rawBody} />}</Article.Body>
-            <Article.Link href={siteUrl} target="_blank" rel="noopener noreferrer">
-              Go to live Site
-            </Article.Link>
+            <Article.Links>
+              {projectUrl && (
+                <Article.Link href={projectUrl} target="_blank" rel="noopener noreferrer">
+                  Go to live site
+                </Article.Link>
+              )}
+              {sourceUrl && (
+                <Article.Link href={sourceUrl} target="_blank" rel="noopener noreferrer">
+                  View source code
+                </Article.Link>
+              )}
+              <Link to="/">Go back to the homepage</Link>
+            </Article.Links>
           </Article>
-          <Link to="/">Go back to the homepage</Link>
         </Section.Content>
         <Section.Aside>
           {/* TODO: Convert to its own component? */}
@@ -71,12 +65,12 @@ export default function ProjectPage({
           </h2>
           <ul>
             {allProjects.nodes.map(
-              project => project.title && (
-                <li key={project.title}>
-                  <Link to={`/projects/${project.slug?.current || ''}`}>
-                    {project.title}
-                  </Link>
-                </li>
+              projectNode => projectNode.title && (
+              <li key={projectNode.title}>
+                <Link to={`/projects/${projectNode.slug?.current || ''}`}>
+                  {projectNode.title}
+                </Link>
+              </li>
               )
             )}
           </ul>
@@ -104,12 +98,13 @@ export const query = graphql`
       title
       subdomain
       url
+      sourceUrl
       skills {
         title
         url
       }
       publishedAt
-      _rawBody
+      rawBody: _rawBody
       desktopImage {
         asset {
           localFile {

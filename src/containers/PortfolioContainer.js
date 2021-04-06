@@ -1,6 +1,7 @@
 import React from 'react'
 import BlockContent from '@sanity/block-content-to-react'
 import { Portfolio } from '../components'
+import ProjectLinksContainer from './ProjectLinksContainer'
 
 export default function PortfolioContainer({ projects }) {
   return (
@@ -8,8 +9,20 @@ export default function PortfolioContainer({ projects }) {
       {projects.map(({ _rawAbstract: rawAbstract, ...project }) => (
         <Portfolio.Item key={project.title} to={`/projects/${project.slug?.current || ''}`}>
           <Portfolio.Item.Content>
-            <Portfolio.Item.Title>{project.title}</Portfolio.Item.Title>
             <Portfolio.Item.Subtitle>{project.publishedAt}</Portfolio.Item.Subtitle>
+            <div
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                alignItems: 'baseline',
+                marginBottom: '0.8rem'
+              }}
+            >
+              <Portfolio.Item.Title style={{ marginRight: '0.15em' }}>
+                {project.title}
+              </Portfolio.Item.Title>
+              <ProjectLinksContainer project={project} />
+            </div>
             <Portfolio.Item.Text>
               {rawAbstract && <BlockContent blocks={rawAbstract} />}
             </Portfolio.Item.Text>

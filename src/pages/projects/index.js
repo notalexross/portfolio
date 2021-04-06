@@ -27,6 +27,9 @@ export const query = graphql`
     allSanityProject(sort: { fields: publishedAt, order: DESC }) {
       nodes {
         title
+        subdomain
+        url
+        sourceUrl
         _rawAbstract
         slug {
           current

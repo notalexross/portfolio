@@ -7,8 +7,7 @@ export const Container = styled.article`
   display: grid;
   gap: 0.8rem;
   grid-template-areas:
-    'title'
-    'subtitle'
+    'heading'
     'images'
     'keywords'
     'body'
@@ -18,21 +17,22 @@ export const Container = styled.article`
     grid-template-areas:
       'images'
       'keywords'
-      'title'
-      'subtitle'
+      'heading'
       'body'
       'link';
   }
 `
 
+export const Heading = styled.div`
+  grid-area: heading;
+`
+
 export const Title = styled.h1`
-  grid-area: title;
   margin: 0;
   // margin-bottom: 0.2em;
 `
 
 export const Subtitle = styled.p`
-  grid-area: subtitle;
   margin: 0;
   // margin: 0 0 1.5em;
   opacity: 0.8;
@@ -44,8 +44,7 @@ export const Keywords = styled.ul`
   list-style: none;
   padding: 0;
   display: flex;
-  margin: 0;
-  margin-top: 0.3em;
+  margin: 0.3em 0;
   flex-wrap: wrap;
   font-size: 0.95em;
 
@@ -94,8 +93,11 @@ export const Body = styled.div`
   }
 `
 
-export const Link = styled.a`
+export const Links = styled.div`
   grid-area: link;
+`
+
+export const Anchor = styled.a`
   &:hover,
   &:focus {
     color: var(--clr-accent-secondary);

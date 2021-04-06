@@ -1,13 +1,15 @@
 import React from 'react'
 import {
   Container,
+  Heading,
   Title,
   Subtitle,
   Keywords,
   Keyword,
   KeywordInner,
   Body,
-  Link,
+  Links,
+  Anchor,
   Images,
   Image,
   ImagePlaceholder
@@ -15,6 +17,10 @@ import {
 
 export default function Article({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>
+}
+
+Article.Heading = function ArticleHeading({ children, ...restProps }) {
+  return <Heading {...restProps}>{children}</Heading>
 }
 
 Article.Title = function ArticleTitle({ children, ...restProps }) {
@@ -52,8 +58,21 @@ Article.Body = function ArticleBody({ children, ...restProps }) {
   return <Body {...restProps}>{children}</Body>
 }
 
+Article.Links = function ArticleLinks({ children, ...restProps }) {
+  return <Links {...restProps}>{children}</Links>
+}
+
 Article.Link = function ArticleLink({ children, ...restProps }) {
-  return <Link {...restProps}>{children}</Link>
+  const handleClick = event => {
+    event.currentTarget.blur()
+  }
+
+  return (
+    <>
+      <Anchor onClick={handleClick} {...restProps}>{children}</Anchor>
+      <br />
+    </>
+  )
 }
 
 Article.Images = function ArticleImages({ children, ...restProps }) {
