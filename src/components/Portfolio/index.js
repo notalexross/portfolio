@@ -73,11 +73,9 @@ Portfolio.Item.Title = function PortfolioItemTitle({ children, ...restProps }) {
   const { to } = useContext(ItemContext)
 
   return (
-    <StyledLink to={to}>
-      <Title {...restProps}>
-        {children}
-      </Title>
-    </StyledLink>
+    <Title {...restProps}>
+      <StyledLink to={to}>{children}</StyledLink>
+    </Title>
   )
 }
 
