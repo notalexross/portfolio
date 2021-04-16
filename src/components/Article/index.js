@@ -31,26 +31,27 @@ Article.Subtitle = function ArticleSubtitle({ children, ...restProps }) {
   return <Subtitle {...restProps}>{children}</Subtitle>
 }
 
-Article.Keywords = function ArticleKeywords({ keywords, ...restProps }) {
+Article.Keywords = function ArticleKeywords({ children, ...restProps }) {
+  return <Keywords {...restProps}>{children}</Keywords>
+}
+
+Article.Keywords.Keyword = function ArticleKeywordsKeyword({ children, href, ...restProps }) {
   const handleClick = event => {
     event.target.blur()
   }
 
   return (
-    <Keywords {...restProps}>
-      {keywords.map(keyword => (
-        <Keyword key={keyword.title}>
-          <KeywordInner
-            href={keyword.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={handleClick}
-          >
-            {keyword.title}
-          </KeywordInner>
-        </Keyword>
-      ))}
-    </Keywords>
+    <Keyword>
+      <KeywordInner
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={handleClick}
+        {...restProps}
+      >
+        {children}
+      </KeywordInner>
+    </Keyword>
   )
 }
 

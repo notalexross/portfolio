@@ -41,7 +41,13 @@ export default function ProjectPage({ data: { project, allProjects } }) {
                 title={`${title} - Mobile`}
               />
             </Article.Images>
-            <Article.Keywords keywords={skills} />
+            <Article.Keywords>
+              {skills && skills.map(skill => (
+                <Article.Keywords.Keyword key={skill.title} href={skill.url}>
+                  {skill.title}
+                </Article.Keywords.Keyword>
+              ))}
+            </Article.Keywords>
             <Article.Body>{rawBody && <BlockContent blocks={rawBody} />}</Article.Body>
             <Article.Links>
               {projectUrl && (
