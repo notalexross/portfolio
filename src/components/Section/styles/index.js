@@ -1,9 +1,8 @@
 import styled from 'styled-components'
 
 export const Container = styled.section`
+  background-color: ${({ backgroundColor }) => backgroundColor || 'var(--clr-secondary)'};
   color: var(--clr-primary);
-  background-color: var(--clr-secondary);
-
   font-size: 1.125rem;
 `
 
@@ -28,6 +27,10 @@ export const Inner = styled.div`
 export const Title = styled.h1`
   font-size: var(--fs-section-headings, 2em);
   margin-bottom: 1.25em;
+
+  & a {
+    font-family: var(--ff-primary);
+  }
 `
 
 export const Content = styled.div`

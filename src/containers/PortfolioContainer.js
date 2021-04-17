@@ -10,17 +10,8 @@ export default function PortfolioContainer({ projects }) {
         <Portfolio.Item key={project.title} to={`/projects/${project.slug?.current || ''}`}>
           <Portfolio.Item.Content>
             <Portfolio.Item.Subtitle>{project.publishedAt}</Portfolio.Item.Subtitle>
-            <div
-              style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                alignItems: 'baseline',
-                marginBottom: '0.8rem'
-              }}
-            >
-              <Portfolio.Item.Title style={{ marginRight: '0.15em' }}>
-                {project.title}
-              </Portfolio.Item.Title>
+            <div className="flex-container">
+              <Portfolio.Item.Title>{project.title}</Portfolio.Item.Title>
               <ProjectLinksContainer project={project} />
             </div>
             <Portfolio.Item.Text>

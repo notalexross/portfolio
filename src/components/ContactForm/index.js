@@ -13,13 +13,18 @@ export default function ContactForm({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>
 }
 
-ContactForm.Form = function ContactFormForm({ onSubmit = () => {}, children, ...restProps }) {
+ContactForm.Form = function ContactFormForm({
+  children,
+  shouldShow = true,
+  onSubmit = () => {},
+  ...restProps
+}) {
   const handleSubmit = event => {
     onSubmit(event)
   }
 
   return (
-    <Form onSubmit={handleSubmit} {...restProps}>
+    <Form shouldShow={shouldShow} onSubmit={handleSubmit} {...restProps}>
       {children}
     </Form>
   )
@@ -70,7 +75,12 @@ ContactForm.SubmitButton = function ContactFormSubmitButton({ children, ...restP
 
 ContactForm.ConfirmationMessage = function ContactFormConfirmationMessage({
   children,
+  shouldShow = false,
   ...restProps
 }) {
-  return <ConfirmationMessage {...restProps}>{children}</ConfirmationMessage>
+  return (
+    <ConfirmationMessage shouldShow={shouldShow} {...restProps}>
+      {children}
+    </ConfirmationMessage>
+  )
 }

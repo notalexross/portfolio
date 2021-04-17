@@ -143,13 +143,14 @@ export const Heading = styled.h2`
 `
 
 export const Text = styled.div`
+  margin-top: 0.8rem;
+  font-size: 1.125em;
+  line-height: 1.2;
+  letter-spacing: 0.005em;
+
   & > p {
     margin-top: 0;
   }
-
-  line-height: 1.2;
-  letter-spacing: 0.005em;
-  font-size: 1.125em;
 
   & a:hover,
   & a:focus {

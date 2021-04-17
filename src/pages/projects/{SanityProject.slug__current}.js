@@ -17,14 +17,8 @@ export default function ProjectPage({ data: { project, allProjects } }) {
         <Section.Content>
           <Article>
             <Article.Heading>
-              <div
-                style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  alignItems: 'baseline'
-                }}
-              >
-                <Article.Title style={{ marginRight: '0.15em' }}>{title}</Article.Title>
+              <div className="flex-container">
+                <Article.Title>{title}</Article.Title>
                 <ProjectLinksContainer project={project} />
               </div>
               <Article.Subtitle>{publishedAt}</Article.Subtitle>

@@ -30,7 +30,7 @@ export default function Home({
         </Section>
       </ScrollNav.Wrapper>
       <ScrollNav.Wrapper id="skills">
-        <Section className="inverted" style={{ backgroundColor: 'var(--clr-tertiary)' }}>
+        <Section className="inverted" backgroundColor="var(--clr-tertiary)">
           <Section.Content>
             <Section.Title>Skills</Section.Title>
             <SkillsContainer />
@@ -41,7 +41,7 @@ export default function Home({
         <Section className="inverted">
           <Section.Content>
             <Section.Title>
-              <Link to="/projects" style={{ fontFamily: 'var(--ff-primary)' }}>
+              <Link to="/projects">
                 My Work
               </Link>
             </Section.Title>
@@ -50,7 +50,7 @@ export default function Home({
         </Section>
       </ScrollNav.Wrapper>
       <ScrollNav.Wrapper id="contact">
-        <Section className="inverted" style={{ backgroundColor: 'var(--clr-tertiary)' }}>
+        <Section className="inverted" backgroundColor="var(--clr-tertiary)">
           <Section.Content>
             <Section.Title>Contact Me</Section.Title>
             <ContactFormContainer />

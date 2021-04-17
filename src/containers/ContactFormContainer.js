@@ -29,8 +29,8 @@ export default function ContactFormContainer() {
         method="post"
         data-netlify="true"
         data-netlify-honeypot="bot-field"
+        shouldShow={!isSubmitted}
         onSubmit={handleSubmit}
-        style={{ display: isSubmitted ? 'none' : 'flex' }}
       >
         <input type="hidden" name="bot-field" />
         <input type="hidden" name="form-name" value="contact" />
@@ -42,7 +42,7 @@ export default function ContactFormContainer() {
           minLength="3"
         >
           Name
-          <span style={{ color: 'var(--clr-accent-primary)' }}>*</span>
+          <span>*</span>
         </ContactForm.TextInput>
         <ContactForm.TextInput
           type="email"
@@ -53,7 +53,7 @@ export default function ContactFormContainer() {
           minLength="5"
         >
           Email
-          <span style={{ color: 'var(--clr-accent-primary)' }}>*</span>
+          <span>*</span>
         </ContactForm.TextInput>
         <ContactForm.TextInput name="subject" placeholder="Your Subject" maxLength="100">
           Subject
@@ -67,11 +67,11 @@ export default function ContactFormContainer() {
           minLength="10"
         >
           Message
-          <span style={{ color: 'var(--clr-accent-primary)' }}>*</span>
+          <span>*</span>
         </ContactForm.TextInput>
         <ContactForm.SubmitButton>Send</ContactForm.SubmitButton>
       </ContactForm.Form>
-      <ContactForm.ConfirmationMessage style={{ display: isSubmitted ? 'unset' : 'none' }}>
+      <ContactForm.ConfirmationMessage shouldShow={isSubmitted}>
         <p>Message sent!</p>
         <p>
           Thank you for getting in touch, please expect a response at the email address you

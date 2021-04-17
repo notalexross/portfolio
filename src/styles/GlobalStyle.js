@@ -161,18 +161,15 @@ const GlobalStyle = createGlobalStyle`
     --clr-secondary: var(--clr-1);
   }
 
-  // react-social-icons
+  .flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
 
-  body ul > a.social-icon {
-    // width: 4.4em !important;
-    // height: 4.4em !important;
-    // width: 4.4em;
-    // height: 4.4em;
-    // background: blue;
+    & > *:not(:last-child) {
+      margin-right: 0.15em;
+    }
   }
-
-  .
-
 `
 
 const GlobalStyleWrapper = React.forwardRef(({ ...restProps }, ref) => {

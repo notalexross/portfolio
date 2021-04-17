@@ -1,9 +1,9 @@
 import React from 'react'
 import { Container, Inner, Title, Content, Text, Aside } from './styles'
 
-export default function Section({ children, ...restProps }) {
+export default function Section({ children, backgroundColor, ...restProps }) {
   return (
-    <Container {...restProps}>
+    <Container backgroundColor={backgroundColor} {...restProps}>
       <Inner>{children}</Inner>
     </Container>
   )
