@@ -18,6 +18,7 @@ export const Inner = styled.div`
   @media (min-width: 950px) {
     display: flex;
     flex-direction: row;
+
     & > * + * {
       margin-left: 3rem;
     }
@@ -25,8 +26,8 @@ export const Inner = styled.div`
 `
 
 export const Title = styled.h1`
-  font-size: var(--fs-section-headings, 2em);
   margin-bottom: 1.25em;
+  font-size: var(--fs-section-headings, 2em);
 
   & a {
     font-family: var(--ff-primary);
@@ -38,9 +39,9 @@ export const Content = styled.div`
 `
 
 export const Text = styled.div`
+  font-size: 1.2rem;
   line-height: 1.4;
   letter-spacing: 0.02em;
-  font-size: 1.2rem;
 
   & > div > * {
     margin-top: 0;
@@ -67,23 +68,23 @@ export const Aside = styled.div`
 
   & h2 {
     font-size: 2em;
-  }
 
-  & h2 > a {
-    font-family: var(--ff-primary);
+    & > a {
+      font-family: var(--ff-primary);
+    }
   }
 
   & ul {
-    list-style: none;
     padding: 0;
+    list-style: none;
   }
 
   & li {
     line-height: 1.3;
-  }
 
-  & li > a {
-    font-weight: var(--fw-reg);
+    & > a {
+      font-weight: var(--fw-reg);
+    }
   }
 
   @media (min-width: 950px) {

@@ -3,9 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import { Social } from '../components'
 
 export default function SocialContainer() {
-  const {
-    sanityDetails: { social }
-  } = useStaticQuery(
+  const { sanityDetails } = useStaticQuery(
     graphql`
       query detailsQuery {
         sanityDetails {
@@ -18,6 +16,8 @@ export default function SocialContainer() {
       }
     `
   )
+
+  const { social } = sanityDetails
 
   return (
     <Social>

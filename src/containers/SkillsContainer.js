@@ -3,22 +3,11 @@ import { useStaticQuery, graphql } from 'gatsby'
 import { Skills } from '../components'
 
 export default function SkillsContainer() {
-  const {
-    sanityContent: { featuredSkills: skills },
-    allSanitySkill: {
-      edges: [
-        {
-          node: {
-            icon: [defaultIcon]
-          }
-        }
-      ]
-    }
-  } = useStaticQuery(
+  const { content, allSkills } = useStaticQuery(
     graphql`
       query skillsQuery {
-        sanityContent {
-          featuredSkills {
+        content: sanityContent {
+          skills: featuredSkills {
             title
             url
             icon {
@@ -27,7 +16,7 @@ export default function SkillsContainer() {
             }
           }
         }
-        allSanitySkill(filter: { title: { eq: "Default" } }) {
+        allSkills: allSanitySkill(filter: { title: { eq: "Default" } }) {
           edges {
             node {
               id
@@ -43,9 +32,13 @@ export default function SkillsContainer() {
     `
   )
 
+  const { skills } = content
+  const defaultIcon = allSkills.edges[0].node.icon[0]
+
   const pairs = skills.reduce((acc, skill, idx) => {
     const iconSvg = skill.icon[0]?.svg || defaultIcon.svg
     const credit = skill.icon[0]?.svg ? skill.icon[0]?.credit : defaultIcon.credit
+
     // eslint-disable-next-line react/no-danger
     const LogoComponent = () => <div dangerouslySetInnerHTML={{ __html: iconSvg }} />
 
@@ -56,6 +49,7 @@ export default function SkillsContainer() {
         <Skills.Title>{skill.title}</Skills.Title>
       </Skills.Item>
     )
+
     return acc
   }, [])
 

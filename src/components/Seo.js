@@ -6,10 +6,10 @@ import { useLocation } from '@reach/router'
 
 export default function SEO({ description, lang, meta, title }) {
   const { pathname } = useLocation()
-  const { sanitySiteSettings: site } = useStaticQuery(
+  const { site } = useStaticQuery(
     graphql`
       query siteMetaQuery {
-        sanitySiteSettings {
+        site: sanitySiteSettings {
           title
           description
           keywords

@@ -8,17 +8,17 @@ export const Container = styled.div`
 `
 
 export const Form = styled.form`
-  display: flex;
+  display: ${({ shouldShow }) => (shouldShow ? 'flex' : 'none')};
   flex-direction: column;
 `
 
 export const Label = styled.label`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: baseline;
   margin-bottom: 1.5em;
 
-  flex-direction: column;
   @media (min-width: 800px) {
     & {
       flex-direction: row;
@@ -28,8 +28,12 @@ export const Label = styled.label`
 
 export const LabelInner = styled.div`
   width: 10em;
-  font-weight: var(--fw-bold);
   margin-bottom: 0.5em;
+  font-weight: var(--fw-bold);
+
+  & span {
+    color: var(--clr-accent-primary);
+  }
 `
 
 export const Input = styled.input.attrs(props => ({
@@ -37,56 +41,49 @@ export const Input = styled.input.attrs(props => ({
 }))`
   box-sizing: border-box;
   width: 100%;
-  border: none;
+  ${({ isTextarea }) => isTextarea && 'height: 18rem;'}
   padding: 0.6em 1.2em;
-  background: var(--clr-primary);
+  border: none;
   border-radius: 0.2em;
-  // border-bottom: solid 3px var(--clr-accent-primary);
-
+  background: var(--clr-primary);
   color: var(--clr-secondary);
-
+  ${({ isError }) => isError && 'color: var(--clr-error) !important;'};
   transition: color var(--transition-time-fast) ease-in-out,
     background-color var(--transition-time-fast) ease-in-out;
+  resize: none;
+
   &:focus {
     background-color: var(--clr-accent-primary);
     color: var(--clr-dark);
     transition: none;
   }
-
-  ${({ isError }) => isError && 'color: var(--clr-error) !important;'};
-
-  resize: none;
-
-  ${({ isTextarea }) => isTextarea && 'height: 18rem;'}
 `
 
 export const SubmitButton = styled.button`
-  color: var(--clr-secondary);
-  background-color: var(--clr-primary);
-  border: none;
-  padding: 1em 2em;
   display: inline;
-  cursor: pointer;
-  text-transform: uppercase;
+  align-self: flex-end;
+  padding: 1em 2em;
+  border: none;
+  border-radius: 0.2em;
+  background-color: var(--clr-primary);
+  color: var(--clr-secondary);
   font-weight: var(--fw-bold);
   letter-spacing: 0.08em;
-  border-radius: 0.2em;
-
-  align-self: flex-end;
-  // margin-top: 1em;
-
+  text-transform: uppercase;
+  cursor: pointer;
   transition: color var(--transition-time-fast) ease-in-out,
     background-color var(--transition-time-fast) ease-in-out,
     transform var(--transition-time-fast) ease-in-out;
+
   &:hover,
   &:focus {
+    transform: scale(1.02);
     background-color: var(--clr-accent-primary);
     color: var(--clr-dark);
-    transform: scale(1.02);
     transition: none;
   }
 `
 
 export const ConfirmationMessage = styled.div`
-  // text-align: center;
+  display: ${({ shouldShow }) => (shouldShow ? 'unset' : 'none')};
 `

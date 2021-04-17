@@ -1,4 +1,3 @@
-// TODO: Allow people to add files? (input type file)
 import React, { useState } from 'react'
 import { ContactForm } from '../components'
 
@@ -19,7 +18,7 @@ export default function ContactFormContainer() {
         if (!response.ok) throw new Error(`${response.status} (${response.statusText})`)
         setIsSubmitted(true)
       })
-      .catch(error => alert(error))
+      .catch(alert)
   }
 
   return (
@@ -37,9 +36,9 @@ export default function ContactFormContainer() {
         <ContactForm.TextInput
           name="name"
           placeholder="Your Name"
-          required
-          maxLength="100"
           minLength="3"
+          maxLength="100"
+          required
         >
           Name
           <span>*</span>
@@ -48,9 +47,9 @@ export default function ContactFormContainer() {
           type="email"
           name="email"
           placeholder="Your Email"
-          required
-          maxLength="100"
           minLength="5"
+          maxLength="100"
+          required
         >
           Email
           <span>*</span>
@@ -62,9 +61,9 @@ export default function ContactFormContainer() {
           textarea
           name="message"
           placeholder="Your Message"
-          required
-          maxLength="2000"
           minLength="10"
+          maxLength="2000"
+          required
         >
           Message
           <span>*</span>

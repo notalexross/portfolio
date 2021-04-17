@@ -2,8 +2,6 @@ import styled from 'styled-components'
 import Img from 'gatsby-image'
 
 export const Container = styled.article`
-  line-height: 1.5;
-
   display: grid;
   gap: 0.8rem;
   grid-template-areas:
@@ -12,6 +10,7 @@ export const Container = styled.article`
     'keywords'
     'body'
     'link';
+  line-height: 1.5;
 
   @media (min-width: 950px) {
     grid-template-areas:
@@ -29,25 +28,23 @@ export const Heading = styled.div`
 
 export const Title = styled.h1`
   margin: 0;
-  // margin-bottom: 0.2em;
 `
 
 export const Subtitle = styled.p`
   margin: 0;
-  // margin: 0 0 1.5em;
   opacity: 0.8;
   font-size: 0.9em;
 `
 
 export const Keywords = styled.ul`
   grid-area: keywords;
-  list-style: none;
-  padding: 0;
   display: flex;
-  margin: 0.3em 0;
   flex-wrap: wrap;
+  margin: 0.3em 0;
+  padding: 0;
   font-size: 0.95em;
-
+  list-style: none;
+  
   & > :not(:last-child) {
     margin-right: 0.3em;
   }
@@ -60,12 +57,12 @@ export const Keyword = styled.li`
 
 export const KeywordInner = styled.a`
   display: inline-block;
-  font-family: var(--ff-primary);
-  font-weight: var(--fw-reg);
+  padding: 0.25em 0.6em;
+  border-radius: 0.2rem;
   background-color: var(--clr-primary);
   color: var(--clr-secondary);
-  border-radius: 0.2rem;
-  padding: 0.25em 0.6em;
+  font-family: var(--ff-primary);
+  font-weight: var(--fw-reg);
   transition: background-color var(--transition-time-fast) ease-in-out,
     color var(--transition-time-fast) ease-in-out;
 
@@ -83,8 +80,8 @@ export const Body = styled.div`
   & p,
   & ul,
   & ol {
-    letter-spacing: 0.005em;
     font-family: var(--ff-secondary);
+    letter-spacing: 0.005em;
   }
 
   & a:hover,
@@ -106,13 +103,11 @@ export const Anchor = styled.a`
 
 export const Images = styled.a`
   grid-area: images;
-  // max-width: 800px;
-  height: fit-content;
-  width: 100%;
   display: grid;
   grid-template-columns: 3.16fr 1fr;
   grid-gap: 1rem;
-  // margin: 0 auto 5rem;
+  width: 100%;
+  height: fit-content;
 `
 
 export const ImagePlaceholder = styled.div`

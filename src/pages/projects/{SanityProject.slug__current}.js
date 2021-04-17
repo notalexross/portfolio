@@ -6,7 +6,8 @@ import { Layout, SEO, Section, Article } from '../../components'
 import { ProjectLinksContainer } from '../../containers'
 import { useProjectUrl } from '../../hooks'
 
-export default function ProjectPage({ data: { project, allProjects } }) {
+export default function ProjectPage({ data }) {
+  const { project, allProjects } = data
   const { title, sourceUrl, skills, publishedAt, rawBody, desktopImage, mobileImage } = project
   const projectUrl = useProjectUrl(project)
 
@@ -36,11 +37,12 @@ export default function ProjectPage({ data: { project, allProjects } }) {
               />
             </Article.Images>
             <Article.Keywords>
-              {skills && skills.map(skill => (
-                <Article.Keywords.Keyword key={skill.title} href={skill.url}>
-                  {skill.title}
-                </Article.Keywords.Keyword>
-              ))}
+              {skills &&
+                skills.map(skill => (
+                  <Article.Keywords.Keyword key={skill.title} href={skill.url}>
+                    {skill.title}
+                  </Article.Keywords.Keyword>
+                ))}
             </Article.Keywords>
             <Article.Body>{rawBody && <BlockContent blocks={rawBody} />}</Article.Body>
             <Article.Links>
@@ -59,7 +61,6 @@ export default function ProjectPage({ data: { project, allProjects } }) {
           </Article>
         </Section.Content>
         <Section.Aside>
-          {/* TODO: Convert to its own component? */}
           <h2>
             <Link to="/projects">More Work</Link>
           </h2>

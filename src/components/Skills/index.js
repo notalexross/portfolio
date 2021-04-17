@@ -16,16 +16,16 @@ export default function Skills({ children, ...restProps }) {
 }
 
 Skills.ItemsContainer = function SkillsItemsContainer({ children, ...restProps }) {
-  const onlyOneChild = Children.count(children) === 1
+  const hasSingleChild = Children.count(children) === 1
 
   return (
-    <ItemsContainer onlyOneChild={onlyOneChild} {...restProps}>
+    <ItemsContainer hasSingleChild={hasSingleChild} {...restProps}>
       {children}
     </ItemsContainer>
   )
 }
 
-Skills.Item = function SkillsItem({ href, children, ...restProps }) {
+Skills.Item = function SkillsItem({ children, href, ...restProps }) {
   const handleClick = event => {
     event.currentTarget.blur()
   }
@@ -41,12 +41,12 @@ Skills.Item = function SkillsItem({ href, children, ...restProps }) {
   )
 }
 
-Skills.Logo = function SkillsLogo({ LogoComponent, credit, children, ...restProps }) {
+Skills.Logo = function SkillsLogo({ children, LogoComponent, credit, ...restProps }) {
   const logoRef = useAcknowledge(credit)
 
   return (
     <Logo ref={logoRef} {...restProps}>
-      {LogoComponent ? <LogoComponent /> : null}
+      {LogoComponent && <LogoComponent />}
     </Logo>
   )
 }

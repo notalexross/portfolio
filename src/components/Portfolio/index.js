@@ -26,7 +26,7 @@ export default function Portfolio({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>
 }
 
-Portfolio.Item = function PortfolioItem({ to, children, ...restProps }) {
+Portfolio.Item = function PortfolioItem({ children, to, ...restProps }) {
   return (
     <ItemContext.Provider value={{ to }}>
       <Item {...restProps}>{children}</Item>
@@ -96,8 +96,8 @@ Portfolio.Item.Keywords = function PortfolioItemKeywords({ children, ...restProp
 }
 
 Portfolio.Item.Keywords.Keyword = function PortfolioItemKeywordsKeyword({
-  href,
   children,
+  href,
   ...restProps
 }) {
   const handleClick = event => {

@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
 export const Container = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0;
   display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 
   & > * + * {
     margin-left: 0.5em;
@@ -14,10 +14,9 @@ export const Container = styled.ul`
 export const Item = styled.li``
 
 export const Anchor = styled.a`
-  text-decoration: none;
   color: unset;
-  transition: color var(--transition-time-fast) ease-in-out,
-    opacity var(--transition-time-fast) ease-in-out;
+  text-decoration: none;
+  transition: color var(--transition-time-fast) ease-in-out;
 
   &:hover,
   &:focus {
@@ -28,5 +27,4 @@ export const Anchor = styled.a`
 
 export const Icon = styled.i`
   font-size: 1.5em;
-  // width: 1em;
 `

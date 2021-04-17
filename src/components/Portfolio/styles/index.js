@@ -5,7 +5,7 @@ import Img from 'gatsby-image'
 export const Container = styled.div`
   font-size: 1rem;
 
-  --mobile-image-offset-y: 50%; // relative to width of mobile image
+  --mobile-image-offset-y: 50%;
   --mobile-offset-right: 3rem;
   --mobile-offset-bottom: 2rem;
 
@@ -22,9 +22,9 @@ export const Title = styled.h1`
 `
 
 export const Subtitle = styled.p`
+  margin: 0 0 0.2rem;
   opacity: 0.8;
   font-size: 0.9em;
-  margin: 0 0 0.2rem;
 `
 
 export const Content = styled.div`
@@ -36,7 +36,6 @@ export const Images = styled.div.attrs(({ to }) => ({
 }))`
   grid-area: images;
   height: fit-content;
-
   padding-right: var(--mobile-offset-right);
   padding-bottom: var(--mobile-offset-bottom);
 
@@ -60,14 +59,13 @@ export const ImagesInner = styled.div`
 
 export const ImageMobileContainer = styled.div`
   position: absolute;
+  bottom: calc(-1 * var(--mobile-offset-bottom));
+  right: calc(-1 * var(--mobile-offset-right));
   width: 100%;
   max-width: 25%;
 
-  bottom: calc(-1 * var(--mobile-offset-bottom));
-  right: calc(-1 * var(--mobile-offset-right));
-
   @media (min-width: 800px) {
-    transform-style: inherit; // Required in firefox for some reason.
+    transform-style: inherit; // Required in firefox for unknown reason
     left: var(--portfolio-images-mobile-position-left);
   }
 `
@@ -76,8 +74,8 @@ export const Shadow = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
   width: 100%;
+  height: 100%;
 
   &::before {
     content: '';
@@ -86,7 +84,6 @@ export const Shadow = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-
     background-color: black;
     opacity: 0.5;
     filter: blur(6px);
@@ -97,11 +94,10 @@ export const Shadow = styled.div`
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%;
-    padding-top: var(--mobile-image-offset-y);
     transform-origin: bottom;
     transform: rotateX(-90deg);
-
+    width: 100%;
+    padding-top: var(--mobile-image-offset-y);
     background-color: black;
     opacity: 0.1;
     filter: blur(5px);
@@ -109,8 +105,8 @@ export const Shadow = styled.div`
 `
 
 const mixinMobile = css`
-  box-shadow: 0 0 0 1px #0002;
   transform: rotateY(-90deg) translateX(var(--mobile-image-offset-y)) rotateY(90deg);
+  box-shadow: 0 0 0 1px #0002;
 `
 
 const mixinDesktop = css`
@@ -120,7 +116,7 @@ const mixinDesktop = css`
 export const ImagePlaceholder = styled.div`
   ${({ mobile }) => (mobile ? mixinMobile : mixinDesktop)}
   padding-top: ${({ mobile }) => (mobile ? 'calc(100% / 0.5625)' : '56.25%')};
-  background: var(--clr-tertiary);
+  background-color: var(--clr-tertiary);
 `
 
 export const ImageMobile = styled(Img)`
@@ -159,12 +155,12 @@ export const Text = styled.div`
 `
 
 export const Keywords = styled.ul`
-  list-style: none;
-  padding: 0;
   display: flex;
-  margin-bottom: 0;
   flex-wrap: wrap;
+  margin-bottom: 0;
+  padding: 0;
   font-size: 0.95em;
+  list-style: none;
 
   & > :not(:last-child) {
     margin-right: 0.3em;
@@ -177,12 +173,12 @@ export const Keyword = styled.li`
 
 export const KeywordInner = styled.a`
   display: inline-block;
-  font-family: var(--ff-primary);
-  font-weight: var(--fw-reg);
+  padding: 0.25em 0.6em;
+  border-radius: 0.2rem;
   background-color: var(--clr-primary);
   color: var(--clr-secondary);
-  border-radius: 0.2rem;
-  padding: 0.25em 0.6em;
+  font-family: var(--ff-primary);
+  font-weight: var(--fw-reg);
   transition: background-color var(--transition-time-fast) ease-in-out,
     color var(--transition-time-fast) ease-in-out;
 
@@ -195,28 +191,10 @@ export const KeywordInner = styled.a`
 `
 
 export const Item = styled.article`
-  position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  position: relative;
   gap: 2rem 1rem;
-
-  &:not(:last-child) {
-    padding-bottom: 4rem;
-    margin-bottom: 4rem;
-
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      height: 1px;
-      width: 100%;
-      background-color: var(--clr-primary);
-      opacity: 0.2;
-    }
-  }
-
+  grid-template-columns: 1fr 1fr;
   grid-template-areas:
     'images images'
     'content content';
@@ -224,6 +202,23 @@ export const Item = styled.article`
   --portfolio-image-desktop-bs: var(--bs-reverse);
   --portfolio-images-perspective-origin: 25% 50%;
   --portfolio-images-transform-origin: 0 0 0;
+
+  &:not(:last-child) {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 1px;
+      background-color: var(--clr-primary);
+      opacity: 0.2;
+    }
+  }
 
   &:nth-child(even) {
     --portfolio-images-perspective-origin: 75% 50%;

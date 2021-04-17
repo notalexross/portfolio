@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Inner, Content, Title, Subtitle, ScrollAnchor } from './styles'
 import { useAcknowledge } from '../../hooks'
 
-export default function Feature({ credit, children, ...restProps }) {
+export default function Feature({ children, credit, ...restProps }) {
   const backgroundRef = useAcknowledge(credit)
 
   return (

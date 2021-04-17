@@ -10,11 +10,9 @@ import {
   FeatureContainer
 } from '../containers'
 
-export default function Home({
-  data: {
-    sanityContent: { _rawAbout, featuredProjects: projects }
-  }
-}) {
+export default function Home({ data }) {
+  const { about, projects } = data.content
+
   return (
     <Layout>
       <SEO title="Home" />
@@ -25,7 +23,7 @@ export default function Home({
         <Section>
           <Section.Content>
             <Section.Title>About Me</Section.Title>
-            <Section.Text>{_rawAbout && <BlockContent blocks={_rawAbout} />}</Section.Text>
+            <Section.Text>{about && <BlockContent blocks={about} />}</Section.Text>
           </Section.Content>
         </Section>
       </ScrollNav.Wrapper>
@@ -41,9 +39,7 @@ export default function Home({
         <Section className="inverted">
           <Section.Content>
             <Section.Title>
-              <Link to="/projects">
-                My Work
-              </Link>
+              <Link to="/projects">My Work</Link>
             </Section.Title>
             <PortfolioContainer projects={projects} />
           </Section.Content>
@@ -64,14 +60,14 @@ export default function Home({
 // NOTE: Must add a maxWidth to fluid image requests, otherwise maxes out at 800px wide.
 export const query = graphql`
   query {
-    sanityContent {
-      _rawAbout
-      featuredProjects {
+    content: sanityContent {
+      about: _rawAbout
+      projects: featuredProjects {
         title
         subdomain
         url
         sourceUrl
-        _rawAbstract
+        abstract: _rawAbstract
         slug {
           current
         }

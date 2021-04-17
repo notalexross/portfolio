@@ -70,7 +70,9 @@ Article.Link = function ArticleLink({ children, ...restProps }) {
 
   return (
     <>
-      <Anchor onClick={handleClick} {...restProps}>{children}</Anchor>
+      <Anchor onClick={handleClick} {...restProps}>
+        {children}
+      </Anchor>
       <br />
     </>
   )

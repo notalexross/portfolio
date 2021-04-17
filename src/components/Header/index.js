@@ -17,26 +17,28 @@ const TogglerContext = createContext()
 
 export default function Header({ children, ...restProps }) {
   const { pathname } = useLocation()
+
+  const isHomePage = pathname === '/'
+
   const [isOpen, setIsOpen] = useState(false)
   const [shouldTransition, setShouldTransition] = useState(false)
-  const [isOpaque, setIsOpaque] = useState(pathname !== '/')
-  const [isVisible, setIsVisible] = useState(pathname !== '/')
+  const [isOpaque, setIsOpaque] = useState(!isHomePage)
+  const [isVisible, setIsVisible] = useState(!isHomePage)
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsVisible(
-        pathname !== '/' ||
-          window.scrollY <= 50 ||
-          window.scrollY >= document.documentElement.clientHeight - 1
-      )
-      setIsOpaque(pathname !== '/' || window.scrollY >= document.documentElement.clientHeight - 1)
+      const isOverHeader = window.scrollY <= 50
+      const isOverFeature = isHomePage && window.scrollY < document.documentElement.clientHeight - 1
+
+      setIsVisible(isOverHeader || !isOverFeature)
+      setIsOpaque(!isOverFeature)
     }
 
     handleScroll()
     window.addEventListener('scroll', handleScroll)
 
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [pathname])
+  }, [isHomePage])
 
   useEffect(() => {
     setTimeout(() => setShouldTransition(true), 0)
@@ -53,7 +55,7 @@ export default function Header({ children, ...restProps }) {
         >
           <Inner>{children}</Inner>
         </Outer>
-        {pathname !== '/' ? <Spacer>{children}</Spacer> : null}
+        {!isHomePage && <Spacer>{children}</Spacer>}
       </Container>
     </TogglerContext.Provider>
   )
@@ -61,6 +63,7 @@ export default function Header({ children, ...restProps }) {
 
 Header.Toggler = function HeaderToggler({ ...restProps }) {
   const { setIsOpen } = useContext(TogglerContext)
+
   const handleClick = () => {
     setIsOpen(isOpen => !isOpen)
   }
@@ -91,9 +94,9 @@ Header.Navbar.Nav = function HeaderNavbarNav({ children, ...restProps }) {
 }
 
 Header.Navbar.Nav.Item = function HeaderNavbarNavItem({
-  onClick = () => {},
-  to,
   children,
+  to,
+  onClick = () => {},
   ...restProps
 }) {
   const { setIsOpen, isOpaque } = useContext(TogglerContext)

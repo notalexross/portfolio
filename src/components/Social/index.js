@@ -9,7 +9,7 @@ Social.Item = function SocialItem({ children, ...restProps }) {
   return <Item {...restProps}>{children}</Item>
 }
 
-Social.Icon = function SocialIcon({ url, socialNetwork = 'link', children, ...restProps }) {
+Social.Icon = function SocialIcon({ children, url, socialNetwork = 'link', ...restProps }) {
   const handleClick = event => {
     event.currentTarget.blur()
   }

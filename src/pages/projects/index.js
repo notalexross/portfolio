@@ -4,11 +4,9 @@ import { graphql } from 'gatsby'
 import { Layout, SEO, Section } from '../../components'
 import { PortfolioContainer } from '../../containers'
 
-export default function ProjectsPage({
-  data: {
-    allSanityProject: { nodes: projects }
-  }
-}) {
+export default function ProjectsPage({ data }) {
+  const projects = data.allProjects.nodes
+
   return (
     <Layout>
       <SEO title="Projects" />
@@ -24,13 +22,13 @@ export default function ProjectsPage({
 
 export const query = graphql`
   query allProjectQuery {
-    allSanityProject(sort: { fields: publishedAt, order: DESC }) {
+    allProjects: allSanityProject(sort: { fields: publishedAt, order: DESC }) {
       nodes {
         title
         subdomain
         url
         sourceUrl
-        _rawAbstract
+        abstract: _rawAbstract
         slug {
           current
         }

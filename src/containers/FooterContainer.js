@@ -1,4 +1,3 @@
-// TODO: add copyright date: new Date().getFullYear()
 import React from 'react'
 import { Footer } from '../components'
 import SocialContainer from './SocialContainer'

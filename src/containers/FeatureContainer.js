@@ -4,35 +4,13 @@ import BlockContent from '@sanity/block-content-to-react'
 import { Feature } from '../components'
 
 export default function FeatureContainer() {
-  // const { sanityContent: content } = useStaticQuery(
-  //   graphql`
-  //     query contentQuery {
-  //       sanityContent {
-  //         homeTitle
-  //         _rawHomeSubtitle
-  //         homeImage {
-  //           credit
-  //           image {
-  //             asset {
-  //               fluid(maxWidth: 1920) {
-  //                 ...GatsbySanityImageFluid
-  //               }
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-  //   `
-  // )
-
-  // const imageFluid = content?.homeImage[0]?.image.asset.fluid
-
-  const { sanityContent: content } = useStaticQuery(
+  // Note: Must always specify maxWidth in fluid image query
+  const { content } = useStaticQuery(
     graphql`
       query contentQuery {
-        sanityContent {
+        content: sanityContent {
           homeTitle
-          _rawHomeSubtitle
+          homeSubtitle: _rawHomeSubtitle
           homeImage {
             credit
             image {
@@ -53,25 +31,15 @@ export default function FeatureContainer() {
   )
 
   const imageFluid = content?.homeImage[0]?.image.asset.localFile.childImageSharp.fluid
-  // eslint-disable-next-line no-underscore-dangle
-  const subtitle = content?._rawHomeSubtitle
-
-  // NOTE: gatsby-background-image issue:
-  // when using either sanity or local, you have to add a maxWidth! Otherwise it defaults to 800px max-width...
-  // It's supposed to scale above 800 when that happens, but it just never gives anything higher than 800 for some reason.
-  // happens with regular gatsby-image too...
-  // default: "sizes": "(max-width: 800px) 100vw, 800px"
+  const imageCredit = content?.homeImage[0]?.credit
+  const title = content?.homeTitle
+  const subtitle = content?.homeSubtitle
 
   return (
-    <Feature
-      fluid={[imageFluid || '', 'var(--bg-feature-gradient, none)']}
-      credit={content?.homeImage[0]?.credit}
-    >
+    <Feature fluid={[imageFluid || '', 'var(--bg-feature-gradient, none)']} credit={imageCredit}>
       <Feature.Content>
-        <Feature.Title>{content?.homeTitle}</Feature.Title>
-        <Feature.Subtitle>
-          {subtitle && <BlockContent blocks={subtitle} />}
-        </Feature.Subtitle>
+        <Feature.Title>{title}</Feature.Title>
+        <Feature.Subtitle>{subtitle && <BlockContent blocks={subtitle} />}</Feature.Subtitle>
       </Feature.Content>
       <Feature.ScrollAnchor className="fas fa-chevron-circle-down" href="#about" />
     </Feature>

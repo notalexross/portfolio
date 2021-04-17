@@ -6,7 +6,7 @@ import ProjectLinksContainer from './ProjectLinksContainer'
 export default function PortfolioContainer({ projects }) {
   return (
     <Portfolio>
-      {projects.map(({ _rawAbstract: rawAbstract, ...project }) => (
+      {projects.map(project => (
         <Portfolio.Item key={project.title} to={`/projects/${project.slug?.current || ''}`}>
           <Portfolio.Item.Content>
             <Portfolio.Item.Subtitle>{project.publishedAt}</Portfolio.Item.Subtitle>
@@ -15,7 +15,7 @@ export default function PortfolioContainer({ projects }) {
               <ProjectLinksContainer project={project} />
             </div>
             <Portfolio.Item.Text>
-              {rawAbstract && <BlockContent blocks={rawAbstract} />}
+              {project.abstract && <BlockContent blocks={project.abstract} />}
             </Portfolio.Item.Text>
             <Portfolio.Item.Keywords>
               {project.skills.map(skill => (

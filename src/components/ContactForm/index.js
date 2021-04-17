@@ -31,25 +31,23 @@ ContactForm.Form = function ContactFormForm({
 }
 
 ContactForm.TextInput = function ContactFormTextInput({
+  children,
+  minLength,
+  maxLength = Infinity,
   textarea = false,
   bufferLength = 1,
-  maxLength = Infinity,
-  minLength,
-  children,
   ...restProps
 }) {
-  const [value, setValue] = useState('')
+  const [inputValue, setInputValue] = useState('')
   const [isError, setIsError] = useState(false)
 
+  const maxBufferedLength = maxLength && Number(maxLength) + Number(bufferLength)
+
   const handleChange = event => {
-    const targetValue = event.target.value
-    if (targetValue.length < Number(maxLength) + Number(bufferLength)) {
-      setValue(targetValue)
-      if (targetValue.length < maxLength) {
-        isError && setIsError(false)
-      } else {
-        !isError && setIsError(true)
-      }
+    const { value } = event.target
+    if (value.length < maxBufferedLength) {
+      setInputValue(value)
+      setIsError(value.length >= maxLength)
     }
   }
 
@@ -58,9 +56,9 @@ ContactForm.TextInput = function ContactFormTextInput({
       <LabelInner>{children}</LabelInner>
       <Input
         isTextarea={textarea}
-        maxLength={maxLength && Number(maxLength) + Number(bufferLength)}
+        maxLength={maxBufferedLength}
         minLength={minLength}
-        value={value}
+        value={inputValue}
         onChange={handleChange}
         isError={isError}
         {...restProps}
