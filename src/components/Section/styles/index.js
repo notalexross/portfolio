@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'gatsby'
 
 export const Container = styled.section`
   background-color: ${({ backgroundColor }) => backgroundColor || 'var(--clr-secondary)'};
@@ -66,28 +67,30 @@ export const Aside = styled.div`
   min-width: 15em;
   margin-top: 2rem;
 
-  & h2 {
-    font-size: 2em;
-
-    & > a {
-      font-family: var(--ff-primary);
-    }
-  }
-
-  & ul {
-    padding: 0;
-    list-style: none;
-  }
-
-  & li {
-    line-height: 1.3;
-
-    & > a {
-      font-weight: var(--fw-reg);
-    }
-  }
-
   @media (min-width: 950px) {
     margin-top: 0;
   }
 `
+
+export const Heading = styled.h2`
+  font-size: 2em;
+
+  & > a {
+    font-family: var(--ff-primary);
+  }
+`
+
+export const List = styled.ul`
+  padding: 0;
+  list-style: none;
+`
+
+export const ListItem = styled.li`
+  line-height: 1.3;
+
+  & > a {
+    font-weight: var(--fw-reg);
+  }
+`
+
+export const StyledLink = styled(Link)``

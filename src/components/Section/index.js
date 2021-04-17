@@ -1,5 +1,16 @@
 import React from 'react'
-import { Container, Inner, Title, Content, Text, Aside } from './styles'
+import {
+  Container,
+  Inner,
+  Title,
+  Content,
+  Text,
+  Aside,
+  Heading,
+  List,
+  ListItem,
+  StyledLink
+} from './styles'
 
 export default function Section({ children, backgroundColor, ...restProps }) {
   return (
@@ -23,4 +34,22 @@ Section.Text = function SectionText({ children, ...restProps }) {
 
 Section.Aside = function SectionAside({ children, ...restProps }) {
   return <Aside {...restProps}>{children}</Aside>
+}
+
+Section.Heading = function SectionHeading({ children, to, ...restProps }) {
+  return (
+    <Heading {...restProps}>{to ? <StyledLink to={to}>{children}</StyledLink> : children}</Heading>
+  )
+}
+
+Section.Links = function SectionLinks({ children, ...restProps }) {
+  return <List {...restProps}>{children}</List>
+}
+
+Section.Link = function SectionLink({ children, to, ...restProps }) {
+  return (
+    <ListItem {...restProps}>
+      <StyledLink to={to}>{children}</StyledLink>
+    </ListItem>
+  )
 }

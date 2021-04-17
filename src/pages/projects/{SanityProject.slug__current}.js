@@ -61,20 +61,14 @@ export default function ProjectPage({ data }) {
           </Article>
         </Section.Content>
         <Section.Aside>
-          <h2>
-            <Link to="/projects">More Work</Link>
-          </h2>
-          <ul>
-            {allProjects.nodes.map(
-              projectNode => projectNode.title && (
-              <li key={projectNode.title}>
-                <Link to={`/projects/${projectNode.slug?.current || ''}`}>
-                  {projectNode.title}
-                </Link>
-              </li>
-              )
-            )}
-          </ul>
+          <Section.Heading to="/projects">More Work</Section.Heading>
+          <Section.Links>
+            {allProjects.nodes.map(node => node.title && (
+              <Section.Link key={node.title} to={`/projects/${node.slug?.current || ''}`}>
+                {node.title}
+              </Section.Link>
+            ))}
+          </Section.Links>
         </Section.Aside>
       </Section>
     </Layout>
