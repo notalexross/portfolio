@@ -12,17 +12,24 @@ import {
 } from './styles'
 
 export default function Skills({ children, ...restProps }) {
-  return <Container {...restProps}>{children}</Container>
-}
+  const childrenAsArray = Children.toArray(children)
+  const numChildren = childrenAsArray.length
+  const numContainers = Math.ceil(numChildren / 2)
 
-Skills.ItemsContainer = function SkillsItemsContainer({ children, ...restProps }) {
-  const hasSingleChild = Children.count(children) === 1
+  const hasSingleChild = idx => numChildren % 2 !== 0 && idx === numContainers - 1
 
-  return (
-    <ItemsContainer hasSingleChild={hasSingleChild} {...restProps}>
-      {children}
-    </ItemsContainer>
-  )
+  const renderChildren = new Array(numContainers).fill().map((_, idx) => {
+    const innerChildren = childrenAsArray.slice(idx * 2, idx * 2 + 2)
+    const key = `${innerChildren[0].key + (innerChildren[1]?.key || '')}-container`
+
+    return (
+      <ItemsContainer key={key} hasSingleChild={hasSingleChild(idx)} {...restProps}>
+        {innerChildren}
+      </ItemsContainer>
+    )
+  })
+
+  return <Container {...restProps}>{renderChildren}</Container>
 }
 
 Skills.Item = function SkillsItem({ children, href, ...restProps }) {
