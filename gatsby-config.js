@@ -21,7 +21,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'gatsby-starter-default',
+        name: 'Daniel Ross Portfolio',
         short_name: 'Daniel Ross',
         start_url: '/',
         background_color: '#663399',
