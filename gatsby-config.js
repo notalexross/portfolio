@@ -2,10 +2,6 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`
 })
 
-const token = process.env.SANITY_TOKEN
-
-const isProd = process.env.NODE_ENV === 'production'
-
 module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -55,10 +51,9 @@ module.exports = {
       options: {
         projectId: process.env.SANITY_PROJECT_ID,
         dataset: process.env.SANITY_DATASET,
-        token,
-        watchMode: !isProd
-        // overlayDrafts: !isProd && token,
-
+        token: process.env.SANITY_TOKEN,
+        watchMode: process.env.NODE_ENV !== 'production',
+        overlayDrafts: process.env.NODE_ENV !== 'production' && !!process.env.SANITY_TOKEN
         // If the Sanity GraphQL API was deployed using `--tag <name>`,
         // use `graphqlTag` to specify the tag name. Defaults to `default`.
         // graphqlTag: 'default',
