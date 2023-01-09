@@ -46,7 +46,7 @@ const GlobalStyle = createGlobalStyle`
     --clr-2: #0d253f; // don't use this directly
     --clr-primary: var(--clr-1);
     --clr-secondary: var(--clr-2);
-    --clr-tertiary: #d1f5ff;
+    --clr-tertiary: #e8f1ff;
     --clr-accent-primary: #ff9300;
     --clr-accent-secondary: #01b4e4;
     --clr-error: #cc0000;
