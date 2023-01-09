@@ -39,7 +39,7 @@ export default function Home({ data }) {
         <Section className="inverted">
           <Section.Content>
             <Section.Title>
-              <Link to="/projects">My Work</Link>
+              <Link to="/projects">Featured Work</Link>
             </Section.Title>
             <PortfolioContainer projects={projects} />
           </Section.Content>
